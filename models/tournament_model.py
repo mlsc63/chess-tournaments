@@ -38,7 +38,7 @@ class TournamentsModel:
     def add_round_list_tournament(self, round):
         self.round_list.append(round)
 
-    def get_round(self):
+    def get_round_list(self):
         return self.round_list
 
     def __repr__(self):

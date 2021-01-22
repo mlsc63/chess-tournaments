@@ -1,6 +1,8 @@
 from models.menu_model import MenuModel
 from views.menu_view import MenuView
 from controllers.create_tournament_controller import CreateTournaments
+from controllers.round_controller import RoundController
+from list import ListObjet
 
 class HomeMenuController:
     def __init__(self):
@@ -9,8 +11,8 @@ class HomeMenuController:
 
     def __call__(self):
         # We check if there is a tournament in progress
-        # if len(TournamentsObjet.TOURNAMENTS_LIST) > 0:
-        # self.menu.add("auto", "Tournoi en cour", TournamentInProgress().menu)
+        if len(ListObjet.TOURNAMENT) > 0:
+            self.menu.add("auto", "Tournoi en cour", RoundController())
 
         self.menu.add("auto", "Créer un tournois", CreateTournaments())
         self.menu.add("auto", "Liste de tous les acteurs d'un tournoi", lambda :None)

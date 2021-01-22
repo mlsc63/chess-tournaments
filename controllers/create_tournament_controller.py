@@ -17,14 +17,10 @@ class CreateTournaments:
         self.tournament_model.add_name_tournament(self.validation.name("Name:"))
         self.tournament_model.add_date_tournament(self.validation.date('Date:\n'))
         self.tournament_model.add_location_tournament(self.validation.tournament_location('Lieu:\n'))
-        self.tournament_model.add_number_of_turns_tournament(
-            self.validation.tournament_number_of_turns('Nombre de tours:\n'))
-        self.tournament_model.add_time_controller_tournament(
-            self.validation.tournaments_time_controller('Contrôle du temps:\n'))
-        self.tournament_model.add_number_of_players_tournament(
-            self.validation.number('Nombre de participants (Nombre pair):\n'))
-        self.tournament_model.add_description_tournament(
-            self.validation.tournaments_descriptions('Description (option'))
+        self.tournament_model.add_number_of_turns_tournament(self.validation.tournament_number_of_turns('Nombre de tours:\n'))
+        self.tournament_model.add_time_controller_tournament(self.validation.tournaments_time_controller('Contrôle du temps:\n'))
+        self.tournament_model.add_number_of_players_tournament(self.validation.number('Nombre de participants (Nombre pair):\n'))
+        self.tournament_model.add_description_tournament(self.validation.tournaments_descriptions('Description (option'))
         # save tournament in list
         ListObjet.TOURNAMENT.append(self.tournament_model)
         print(self.tournament_model)
@@ -38,6 +34,7 @@ class CreateTournaments:
             round_model.add_tournament_at_round(self.tournament_model)
             # save round in list
             ListObjet.ROUND_LIST.append(round_model)
+            self.tournament_model.add_round_list_tournament(round_model)
             print(round_model)
 
             rounds += 1
