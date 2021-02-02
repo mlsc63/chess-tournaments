@@ -4,7 +4,7 @@ from models.player_model import PlayerModel
 from models.round_model import RoundModel
 from . import home_menu_controller
 from list import ListObjet
-from .round_controller import RoundInitialise
+from .round_controller import RoundInitialiseController
 
 
 class CreateTournaments:
@@ -55,6 +55,7 @@ class CreateTournaments:
         while rounds != int(self.tournament_model.number_of_turns):
             self.round_model = RoundModel()
             self.round_model.add_name_round('Round ' + str(rounds))
+            self.round_model.add_tournament_at_round(self.tournament_model)
 
 
             # save round in list
@@ -63,10 +64,9 @@ class CreateTournaments:
             print(self.round_model)
 
             # Round initialisation
-            RoundInitialise(self.tournament_model, self.round_model).first_init()
+            RoundInitialiseController(self.tournament_model, self.round_model)
             rounds += 1
 
             print(str(self.round_model.get_match_list()))
-
 
         return home_menu_controller.HomeMenuController()

@@ -23,8 +23,8 @@ class RoundModel:
     def add_match_list(self, match):
         self.match_list.append(match)
 
-    # def add_tournament_at_round(self, tournament_at_round):
-        # self.tournament = tournament_at_round
+    def add_tournament_at_round(self, tournament_at_round):
+        self.tournament = tournament_at_round
 
     def get_name_round(self):
         return self.name

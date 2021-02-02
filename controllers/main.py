@@ -1,7 +1,6 @@
 from .home_menu_controller import HomeMenuController
 
 
-
 class ApplicationController:
     def __init__(self):
         self.controller = None
