@@ -64,7 +64,7 @@ class CreateTournaments:
             print(self.round_model)
 
             # Round initialisation
-            RoundInitialiseController(self.tournament_model, self.round_model)
+            RoundInitialiseController(self.tournament_model, self.round_model).first_init()
             rounds += 1
 
             print(str(self.round_model.get_match_list()))
