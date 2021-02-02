@@ -1,6 +1,7 @@
 from list import ListObjet
 from models.menu_model import MenuModel
 from views.menu_view import MenuView
+from .round_global_controller import RoundGlobalController
 
 class RoundMenuController:
 
@@ -25,7 +26,7 @@ class RoundMenuController:
 
                     if round_in_tournament.get_status_round() == True:
                         # print(round_in_tournament)
-                        self.round_menu.add("auto", 'Faire le ' + round_in_tournament.get_name_round() + ' du tournoi: ' + tournament.get_name_tournament() + '?', lambda: None)
+                        self.round_menu.add("auto", 'Faire le ' + round_in_tournament.get_name_round() + ' du tournoi: ' + tournament.get_name_tournament() + '?', RoundGlobalController(round_in_tournament))
                         # break -> we display only one
                         break
 
