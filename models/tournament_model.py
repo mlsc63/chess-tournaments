@@ -11,6 +11,8 @@ class TournamentsModel:
         self.description = description
         self.round_list = []
         self.player_list = []
+        # Status --> for know if the tournament is done or not
+        self.status = True
 
     # Set information of tournament
 
@@ -51,6 +53,9 @@ class TournamentsModel:
 
     def get_round_list(self):
         return self.round_list
+
+    def get_status_tournament(self):
+        return self.status
 
     # Special method
 

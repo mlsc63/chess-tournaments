@@ -32,6 +32,9 @@ class RoundModel:
     def get_match_list(self):
         return self.match_list
 
+    def get_status_round(self):
+        return self.status
+
     def __repr__(self):
         return 'Nom du round:{0}'.format(self.name)
 
