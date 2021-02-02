@@ -1,7 +1,7 @@
 from models.menu_model import MenuModel
 from views.menu_view import MenuView
 from controllers.create_tournament_controller import CreateTournaments
-from controllers.round_controller import RoundMenuController
+from controllers.round_menu_controller import RoundMenuController
 from list import ListObjet
 
 

@@ -4,7 +4,7 @@ from models.player_model import PlayerModel
 from models.round_model import RoundModel
 from . import home_menu_controller
 from list import ListObjet
-from .round_controller import RoundInitialiseController
+from .round_initialise_controller import RoundInitialiseController
 
 
 class CreateTournaments:
