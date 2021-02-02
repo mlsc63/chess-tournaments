@@ -4,6 +4,7 @@ from models.player_model import PlayerModel
 from models.round_model import RoundModel
 from . import home_menu_controller
 from list import ListObjet
+from .round_controller import RoundInitialise
 
 
 class CreateTournaments:
@@ -11,6 +12,8 @@ class CreateTournaments:
     def __init__(self):
         self.validation = Entries()
         self.tournament_model = TournamentsModel()
+        self.player_model = ""
+        self.round_model = ""
 
     def __call__(self):
         print("___Creation d'un nouveau tournoi___")
@@ -25,35 +28,45 @@ class CreateTournaments:
         ListObjet.TOURNAMENT.append(self.tournament_model)
         print(self.tournament_model)
 
-        # add round
-
-        rounds = 0
-        while rounds != int(self.tournament_model.number_of_turns):
-            round_model = RoundModel()
-            round_model.add_name_round('Round ' + str(rounds))
-            round_model.add_tournament_at_round(self.tournament_model)
-            # save round in list
-            ListObjet.ROUND_LIST.append(round_model)
-            self.tournament_model.add_round_list_tournament(round_model)
-            print(round_model)
-
-            rounds += 1
-
         # add player
+
         players = 0
         print("___Ajout des joueurs___")
         while players != int(self.tournament_model.number_of_players):
-            player_model = PlayerModel()
-            player_model.add_first_name_player(self.validation.name('Prenom:'))
-            player_model.add_name_player(self.validation.name('Nom:'))
-            player_model.add_date_of_bird_player(self.validation.name(('Date de naissance')))
-            player_model.add_sex_player(self.validation.sex('Sexe:'))
-            player_model.add_ranked_player(self.validation.number('Niveau du joueur:'))
-            player_model.add_tournament_player(self.tournament_model.get_name_tournament())
-            # save player in list
-            ListObjet.PLAYER.append(player_model)
-            print(player_model)
+            self.player_model = PlayerModel()
+            self.player_model.add_first_name_player(self.validation.name('Prenom:'))
+            self.player_model.add_name_player(self.validation.name('Nom:'))
+            self.player_model.add_date_of_bird_player(self.validation.name(('Date de naissance')))
+            self.player_model.add_sex_player(self.validation.sex('Sexe:'))
+            self.player_model.add_ranked_player(self.validation.number('Niveau du joueur:'))
 
+            # save player in list
+
+            # save instantiation in model of tournament
+            self.tournament_model.add_instantiation_players(self.player_model)
+            ListObjet.PLAYER.append(self.player_model)
+
+            print(self.player_model)
             players += 1
+
+
+        # add round
+        rounds = 0
+        while rounds != int(self.tournament_model.number_of_turns):
+            self.round_model = RoundModel()
+            self.round_model.add_name_round('Round ' + str(rounds))
+
+
+            # save round in list
+            # ListObjet.ROUND_LIST.append(self.round_model)
+            self.tournament_model.add_round_list_tournament(self.round_model)
+            print(self.round_model)
+
+            # Round initialisation
+            RoundInitialise(self.tournament_model, self.round_model).first_init()
+            rounds += 1
+
+            print(str(self.round_model.get_match_list()))
+
 
         return home_menu_controller.HomeMenuController()

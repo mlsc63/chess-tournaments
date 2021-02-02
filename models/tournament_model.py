@@ -10,6 +10,9 @@ class TournamentsModel:
         self.number_of_players = number_of_players
         self.description = description
         self.round_list = []
+        self.player_list = []
+
+    # Set information of tournament
 
     def add_name_tournament(self, name):
         self.name = name
@@ -32,14 +35,24 @@ class TournamentsModel:
     def add_description_tournament(self, description=''):
         self.description = description
 
-    def get_name_tournament(self):
-        return self.name
+    def add_instantiation_players(self, instantiation):
+        self.player_list.append(instantiation)
 
     def add_round_list_tournament(self, round):
         self.round_list.append(round)
 
+    # Get information of tournament
+
+    def get_players_instantiation_list(self):
+        return self.player_list
+
+    def get_name_tournament(self):
+        return self.name
+
     def get_round_list(self):
         return self.round_list
+
+    # Special method
 
     def __repr__(self):
         return 'Tournois: {0} Lieu: {1} Date: {2} Nombre de tours: {3} \

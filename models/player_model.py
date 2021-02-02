@@ -26,11 +26,8 @@ class PlayerModel:
     def add_ranked_player(self, ranked):
         self.ranked = ranked
 
-    def add_tournament_player(self, tournament):
-        self.tournament = tournament
+    # def add_tournament_player(self, tournament):
+        # self.tournament = tournament
 
     def __repr__(self):
-        return 'Nom: {0} Prenom: {1} Date de naissance: {2} Sexe: {3} Classement: {4} Joue dans le tournoi: {5}'.format(
-                                                        self.name, self.fist_name,
-                                                        self.date_of_bird, self.sex,
-                                                        self.ranked, self.tournament)
+        return 'Nom: {0} Prenom: {1} '.format(self.name, self.fist_name)
