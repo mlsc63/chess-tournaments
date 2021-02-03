@@ -35,6 +35,9 @@ class RoundModel:
     def get_status_round(self):
         return self.status
 
+    def get_tournament_round(self):
+        return self.tournament
+
     def __repr__(self):
         return 'Nom du round:{0}'.format(self.name)
 

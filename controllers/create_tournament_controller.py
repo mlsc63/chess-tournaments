@@ -54,7 +54,7 @@ class CreateTournaments:
         rounds = 0
         while rounds != int(self.tournament_model.number_of_turns):
             self.round_model = RoundModel()
-            self.round_model.add_name_round('Round ' + str(rounds))
+            self.round_model.add_name_round('Round ' + str(rounds + 1))
             self.round_model.add_tournament_at_round(self.tournament_model)
 
 

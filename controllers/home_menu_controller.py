@@ -2,6 +2,7 @@ from models.menu_model import MenuModel
 from views.menu_view import MenuView
 from controllers.create_tournament_controller import CreateTournaments
 from controllers.round_menu_controller import RoundMenuController
+from controllers.save_controller import SaveController
 from list import ListObjet
 
 
@@ -22,7 +23,7 @@ class HomeMenuController:
         self.menu.add("auto", "Liste de tous les tournois", lambda: None)
         self.menu.add("auto", "Liste de tous les tours d'un tournoi", lambda: None)
         self.menu.add("auto", "Liste de tous les matchs d'un tournoi", lambda: None)
-        self.menu.add("s", "Sauvegarder", lambda: None)
+        self.menu.add("s", "Sauvegarder", SaveController())
         self.menu.add("q", "Quitter)", lambda: None)
 
         user_choice = self.view.get_user_choice

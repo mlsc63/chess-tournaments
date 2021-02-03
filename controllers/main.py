@@ -1,3 +1,4 @@
+
 from .home_menu_controller import HomeMenuController
 
 
@@ -9,3 +10,5 @@ class ApplicationController:
         self.controller = HomeMenuController()
         while self.controller:
             self.controller = self.controller()
+
+
