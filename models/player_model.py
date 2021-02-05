@@ -28,6 +28,9 @@ class PlayerModel:
 
     # def add_tournament_player(self, tournament):
         # self.tournament = tournament
+    def get_instantiation_serialisation_player(self):
+        return {'first_name': self.fist_name, 'name': self.fist_name, 'date_of_bird': self.date_of_bird,
+                'sex': self.sex, 'ranked': self.ranked, 'tournament': self.tournament}
 
     def __repr__(self):
         return 'Nom: {0} Prenom: {1} '.format(self.name, self.fist_name)
