@@ -1,8 +1,10 @@
 from models.round_model import RoundModel
+
+
 class TournamentsModel:
 
     def __init__(self, name='', location='', date='', number_of_turns='4', time_controller='', number_of_players='',
-                 description=''):
+                 description='', status=True):
         self.name = name
         self.location = location
         self.date = date
@@ -10,10 +12,10 @@ class TournamentsModel:
         self.time_controller = time_controller
         self.number_of_players = number_of_players
         self.description = description
+        # Status --> for know if the tournament is done or not
+        self.status = status
         self.round_list = []
         self.player_list = []
-        # Status --> for know if the tournament is done or not
-        self.status = True
 
     # Set information of tournament
 
@@ -59,13 +61,22 @@ class TournamentsModel:
         return self.status
 
     def get_instantiation_serialisation_tournament(self):
-        return {'name': self.name, 'location': self.location, 'time_controller': self.time_controller,
-                'number_of_players': self.number_of_players, 'description': self.description, 'players': '',
+        return {'name': self.name,
+                'location': self.location,
+                'date': self.date,
+                'number_of_turns': self.number_of_turns,
+                'time_controller': self.time_controller,
+                'number_of_players': self.number_of_players,
+                'description': self.description,
                 'status': self.status}
 
     def __repr__(self):
         return 'Tournois: {0} Lieu: {1} Date: {2} Nombre de tours: {3} \
    Controle de temps: {4} Nombre de joueurs: {5} \
-   Description: {6}'.format(self.name, self.location,
-                            self.date, self.number_of_turns,
-                            self.time_controller, self.number_of_players, self.description)
+   Description: {6}'.format(self.name,
+                            self.location,
+                            self.date,
+                            self.number_of_turns,
+                            self.time_controller,
+                            self.number_of_players,
+                            self.description)

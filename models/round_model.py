@@ -2,14 +2,16 @@ import time
 
 
 class RoundModel:
-    def __init__(self):
-        self.name = ''
-        self.tournament = ''
-        self.start_time = ''
-        self.end_time = ''
-        self.match_list = []
+    def __init__(self, name='', tournament='', start_time='', end_time='', match_list='',  status=True):
+        if match_list is None:
+            match_list = []
+        self.name = name
+        self.tournament = tournament
+        self.start_time = start_time
+        self.end_time = end_time
+        self.match_list = list(match_list)
         # Status --> for know if the round is done or not
-        self.status = True
+        self.status = status
 
     def add_name_round(self, name):
         self.name = name
@@ -40,7 +42,7 @@ class RoundModel:
 
     def get_instantiation_serialisation_round(self, index):
         return {'index': index, 'name': self.name, 'start_time': self.start_time,
-                'end_time': self.end_time, 'match_list': str(self.match_list)}
+                'end_time': self.end_time, 'match_list': str(self.match_list), 'status': self.status}
 
     def __repr__(self):
         return 'Nom du round:{0}'.format(self.name)

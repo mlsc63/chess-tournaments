@@ -10,6 +10,9 @@ class HomeMenuController:
     def __init__(self):
         self.menu = MenuModel()
         self.view = MenuView(self.menu)
+        self.data_controller_load = DataControllerLoad()
+        self.data_controller_erase = DataControllerErase
+        self.data_controller_save = DataControllerSave
 
 
     def __call__(self):
@@ -19,7 +22,8 @@ class HomeMenuController:
         # We check if save data exist
 
         if len(ListObjet.TOURNAMENT) == 0:
-            DataControllerLoad()
+            self.data_controller_load()
+
 
 
         if len(ListObjet.TOURNAMENT) > 0:
@@ -31,8 +35,8 @@ class HomeMenuController:
         self.menu.add("auto", "Liste de tous les tournois", lambda: None)
         self.menu.add("auto", "Liste de tous les tours d'un tournoi", lambda: None)
         self.menu.add("auto", "Liste de tous les matchs d'un tournoi", lambda: None)
-        self.menu.add("s", "Sauvegarder", DataControllerSave())
-        self.menu.add('e', 'Effacer la base de donnée', DataControllerErase())
+        self.menu.add("s", "Sauvegarder", self.data_controller_save())
+        self.menu.add('e', 'Effacer la base de donnée', self.data_controller_erase())
         self.menu.add("q", "Quitter)", lambda: None)
 
         user_choice = self.view.get_user_choice
