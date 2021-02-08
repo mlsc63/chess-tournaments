@@ -38,8 +38,8 @@ class RoundModel:
     def get_tournament_round(self):
         return self.tournament
 
-    def get_instantiation_serialisation_round(self):
-        return {'name': self.name, 'tournament': self.tournament, 'start_time': self.start_time,
+    def get_instantiation_serialisation_round(self, index):
+        return {'index': index, 'name': self.name, 'start_time': self.start_time,
                 'end_time': self.end_time, 'match_list': str(self.match_list)}
 
     def __repr__(self):

@@ -60,8 +60,8 @@ class TournamentsModel:
 
     def get_instantiation_serialisation_tournament(self):
         return {'name': self.name, 'location': self.location, 'time_controller': self.time_controller,
-                'number_of_players': self.number_of_players, 'description': self.description,
-                'round_list': str(self.round_list), 'player_list': str(self.player_list), 'status': self.status}
+                'number_of_players': self.number_of_players, 'description': self.description, 'players': '',
+                'status': self.status}
 
     def __repr__(self):
         return 'Tournois: {0} Lieu: {1} Date: {2} Nombre de tours: {3} \
