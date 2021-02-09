@@ -1,4 +1,3 @@
-
 from .home_menu_controller import HomeMenuController
 
 

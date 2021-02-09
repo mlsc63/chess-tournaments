@@ -71,9 +71,14 @@ class TournamentsModel:
                 'status': self.status}
 
     def __repr__(self):
-        return 'Tournois: {0} Lieu: {1} Date: {2} Nombre de tours: {3} \
-   Controle de temps: {4} Nombre de joueurs: {5} \
-   Description: {6}'.format(self.name,
+        return 'Tournois: {0}' \
+               ' Lieu: {1} ' \
+               'Date: {2} ' \
+               'Nombre de tours: {3} ' \
+               'Controle de temps: {4} ' \
+               'Nombre de joueurs: {5} ' \
+               'Description: {6}' \
+               ''.format(self.name,
                             self.location,
                             self.date,
                             self.number_of_turns,
