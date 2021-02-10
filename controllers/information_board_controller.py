@@ -5,7 +5,7 @@ from . import home_menu_controller
 from views.data_table_view import DataTableView
 
 
-class InitTable:
+class Init:
 
     def __init__(self, objet, value):
         self.objet = objet
@@ -28,6 +28,22 @@ class InitTable:
             return home_menu_controller.HomeMenuController()
 
 
+        if self.value =="ListOfAllRoundsInATournament":
+            table_rounds = []
+            index = []
+            columns = ['Nom', 'Debut', 'Fin', 'status']
+            number_of_rounds = 1
+            for round in self.objet.get_round_list():
+                table_rounds.append(round.round_table())
+                index.append(number_of_rounds)
+                number_of_rounds += 1
+
+            DataTableView(table_rounds, index, columns).display()
+            return home_menu_controller.HomeMenuController()
+
+
+
+
 class ListOfAllPlayersInATournament:
 
     def __init__(self):
@@ -39,7 +55,7 @@ class ListOfAllPlayersInATournament:
 
         for tournament in ListObjet.TOURNAMENT:
             self.tournament_menu.add("auto", tournament.get_name_tournament(),
-                                     InitTable(tournament, 'list_of_all_players_in_a_tournament'))
+                                     Init(tournament, 'list_of_all_players_in_a_tournament'))
 
         user_choice = self.tournament_view.get_user_choice
 
@@ -86,10 +102,18 @@ class ListOfAllTournaments:
         return home_menu_controller.HomeMenuController()
 
 
-
-
 class ListOfAllRoundsInATournament:
-    pass
+    def __init__(self):
+        self.tournament_menu = MenuModel()
+        self.tournament_view = MenuView(self.tournament_menu)
+
+    def __call__(self, *args, **kwargs):
+        for tournament in ListObjet.TOURNAMENT:
+            self.tournament_menu.add("auto", tournament.get_name_tournament(),
+                                     Init(tournament, 'ListOfAllRoundsInATournament'))
+
+        user_choice = self.tournament_view.get_user_choice
+        return user_choice
 
 
 class ListOfAllMatchesInATournament:

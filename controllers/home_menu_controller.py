@@ -4,7 +4,8 @@ from controllers.create_tournament_controller import CreateTournaments
 from controllers.round_menu_controller import RoundMenuController
 from controllers.data_controller import DataControllerErase, DataControllerLoad, DataControllerSave
 from list import ListObjet
-from controllers.information_board_controller import ListOfAllPlayersInATournament, ListOfAllPlayers, ListOfAllTournaments
+from controllers.information_board_controller import ListOfAllPlayersInATournament, ListOfAllPlayers,\
+    ListOfAllTournaments, ListOfAllRoundsInATournament
 
 
 class HomeMenuController:
@@ -30,7 +31,7 @@ class HomeMenuController:
         self.menu.add("auto", "Liste de tous les acteurs d'un tournoi", ListOfAllPlayersInATournament())
         self.menu.add("auto", "Liste de tous les joueurs", ListOfAllPlayers())
         self.menu.add("auto", "Liste de tous les tournois", ListOfAllTournaments())
-        self.menu.add("auto", "Liste de tous les tours d'un tournoi", lambda: None)
+        self.menu.add("auto", "Liste de tous les tours d'un tournoi",  ListOfAllRoundsInATournament())
         self.menu.add("auto", "Liste de tous les matchs d'un tournoi", lambda: None)
         self.menu.add("s", "Sauvegarder", DataControllerSave())
         self.menu.add('e', 'Effacer la base de donnée', DataControllerErase())

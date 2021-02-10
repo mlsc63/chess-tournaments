@@ -47,3 +47,6 @@ class RoundModel:
     def __repr__(self):
         return 'Nom du round:{0}'.format(self.name)
 
+    def round_table(self):
+        return [self.name, self.start_time, self.end_time, self.status]
+
