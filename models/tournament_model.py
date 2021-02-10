@@ -85,3 +85,6 @@ class TournamentsModel:
                             self.time_controller,
                             self.number_of_players,
                             self.description)
+
+    def tournament_table(self):
+        return [self.name, self.location, self.date, self.number_of_turns, self.time_controller, self.number_of_players, self.description, self.status]
