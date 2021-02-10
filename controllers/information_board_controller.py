@@ -108,6 +108,7 @@ class ListOfAllRoundsInATournament:
         self.tournament_view = MenuView(self.tournament_menu)
 
     def __call__(self, *args, **kwargs):
+        print('___Selectionner un tournois pour avoir la liste des tours___')
         for tournament in ListObjet.TOURNAMENT:
             self.tournament_menu.add("auto", tournament.get_name_tournament(),
                                      Init(tournament, 'ListOfAllRoundsInATournament'))
@@ -117,4 +118,13 @@ class ListOfAllRoundsInATournament:
 
 
 class ListOfAllMatchesInATournament:
-    pass
+    def __init__(self):
+        pass
+
+
+
+
+
+
+
+
