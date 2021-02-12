@@ -16,7 +16,8 @@ class DataControllerSave:
     def __call__(self):
 
         # we erase all table from db
-        DataControllerErase()
+        data_controller_erase = DataControllerErase()
+        data_controller_erase()
         # we search all tournament
         index = 1
         for tournament in ListObjet.TOURNAMENT:

@@ -41,6 +41,22 @@ class Init:
             DataTableView(table_rounds, index, columns).display()
             return home_menu_controller.HomeMenuController()
 
+        if self.value == 'round':
+            table_match = []
+            index = []
+            columns = ['player 1', 'player 2', 'score']
+            number_of_rounds = 1
+            print(self.objet.get_name_round())
+            print(str(self.objet.get_match_list()))
+            print(type(self.objet.get_match_list()))
+
+            for match in self.objet.get_match_list():
+                print(match[0])
+
+
+
+
+
 
 
 
@@ -116,10 +132,39 @@ class ListOfAllRoundsInATournament:
         user_choice = self.tournament_view.get_user_choice
         return user_choice
 
+###########################################################################################
+class ListOfAllMatchesInATournamentv2:
+    def __init__(self, tournament):
+        self.tournament_menu = MenuModel()
+        self.tournament_view = MenuView(self.tournament_menu)
+        self.tournament = tournament
+
+    def __call__(self, *args, **kwargs):
+        print('___Selectionner un tournois pour avoir la liste des tours___')
+        for round in self.tournament.get_round_list():
+
+            self.tournament_menu.add("auto", round.get_name_round(), Init(round, 'round'))
+
+        user_choice = self.tournament_view.get_user_choice
+        return user_choice
+
+
 
 class ListOfAllMatchesInATournament:
     def __init__(self):
-        pass
+        self.tournament_menu = MenuModel()
+        self.tournament_view = MenuView(self.tournament_menu)
+
+    def __call__(self, *args, **kwargs):
+        print('___Selectionner un tournois pour avoir la liste des tours___')
+        for tournament in ListObjet.TOURNAMENT:
+            self.tournament_menu.add("auto", tournament.get_name_tournament(),
+                                     ListOfAllMatchesInATournamentv2(tournament))
+
+        user_choice = self.tournament_view.get_user_choice
+        return user_choice
+
+
 
 
 

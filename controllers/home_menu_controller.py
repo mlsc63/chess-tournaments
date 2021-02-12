@@ -4,7 +4,7 @@ from controllers.create_tournament_controller import CreateTournaments
 from controllers.round_menu_controller import RoundMenuController
 from controllers.data_controller import DataControllerErase, DataControllerLoad, DataControllerSave
 from list import ListObjet
-from controllers.information_board_controller_v2 import ListOfAllPlayersInATournament, ListOfAllPlayers,\
+from controllers.information_board_controller import ListOfAllPlayersInATournament, ListOfAllPlayers,\
     ListOfAllTournaments, ListOfAllRoundsInATournament, ListOfAllMatchesInATournament
 
 
