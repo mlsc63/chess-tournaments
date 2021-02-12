@@ -11,6 +11,7 @@ class RoundModel:
         self.match_list = match_list
         # Status --> for know if the round is done or not
         self.status = status
+        
 
     def add_name_round(self, name):
         self.name = name
