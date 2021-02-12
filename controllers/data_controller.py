@@ -44,7 +44,7 @@ class DataControllerErase:
         self.db_table_tournaments.truncate()
         self.db_table_players.truncate()
         self.db_table_rounds.truncate()
-        return home_menu_controller.HomeMenuController()
+
 
 
 class DataControllerLoad:

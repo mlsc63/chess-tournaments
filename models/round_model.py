@@ -2,14 +2,13 @@ import time
 
 
 class RoundModel:
-    def __init__(self, name='', tournament='', start_time='', end_time='', match_list='',  status=True):
-        if match_list is None:
-            match_list = []
+    def __init__(self, name='', tournament='', start_time='', end_time='', match_list=[],  status=True):
+
         self.name = name
         self.tournament = tournament
         self.start_time = start_time
         self.end_time = end_time
-        self.match_list = list(match_list)
+        self.match_list = match_list
         # Status --> for know if the round is done or not
         self.status = status
 
