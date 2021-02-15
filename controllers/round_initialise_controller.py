@@ -1,23 +1,36 @@
 
 class RoundInitialiseController:
-    def __init__(self, tournament, round_model):
-        self.tournament = tournament
+    def __init__(self, number_match, round_model):
+        self.number_match = number_match
         self.round_model = round_model
 
-    def first_init(self):
+    def __call__(self, *args, **kwargs):
         print('__Initailisation___')
 
-        numbers_of_match = (len(self.tournament.get_players_instantiation_list()) / 2)
-        print(numbers_of_match)
-
         index = 0
-        while index != numbers_of_match:
+        list_match = []
+
+        while index != self.number_match:
             match_tuple = ("", "", "")
-            self.round_model.add_match_list(match_tuple)
+            list_match.append(match_tuple)
+            print(str(self.round_model.get_name_round()))
             index += 1
+        self.round_model.add_match_list(list_match)
 
 
-        # if self.round_model.get_name_round() == "Round 1":
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

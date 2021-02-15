@@ -11,7 +11,7 @@ class RoundModel:
         self.match_list = match_list
         # Status --> for know if the round is done or not
         self.status = status
-        
+
 
     def add_name_round(self, name):
         self.name = name
@@ -23,7 +23,8 @@ class RoundModel:
         self.end_time = time.strftime('%H:%M:%S')
 
     def add_match_list(self, match):
-        self.match_list.append(match)
+        self.match_list = match
+
 
     def add_tournament_at_round(self, tournament_at_round):
         self.tournament = tournament_at_round

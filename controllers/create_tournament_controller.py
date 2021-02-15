@@ -57,14 +57,15 @@ class CreateTournaments:
             self.round_model.add_name_round('Round ' + str(rounds + 1))
             self.round_model.add_tournament_at_round(self.tournament_model)
 
-
             # save round in list
             # ListObjet.ROUND_LIST.append(self.round_model)
             self.tournament_model.add_round_list_tournament(self.round_model)
             print(self.round_model)
 
             # Round initialisation
-            RoundInitialiseController(self.tournament_model, self.round_model).first_init()
+            numbers_of_match = (len(self.tournament_model.get_players_instantiation_list()) // 2)
+            round_initialisation_controller = RoundInitialiseController(numbers_of_match, self.round_model)
+            round_initialisation_controller()
             rounds += 1
 
             print(str(self.round_model.get_match_list()))
