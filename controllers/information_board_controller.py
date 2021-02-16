@@ -44,13 +44,16 @@ class Init:
         if self.value == 'round':
             table_match = []
             index = []
-            columns = ['player 1', 'player 2', 'score']
-            number_of_rounds = 1
-            print(self.objet.get_name_round())
+            columns = ['player 1', 'score', 'player 2', 'score']
+            number_of_matchs = 1
 
-            for match in self.objet.get_match_list():
-                print(match)
-                # TODO Display the match correctly
+            for matchs in self.objet.get_match_list():
+                table_match.append([matchs[0][0], matchs[0][1], matchs[1][0], matchs[1][1]])
+                index.append(number_of_matchs)
+                number_of_matchs += 1
+
+            DataTableView(table_match, index, columns).display()
+
             return home_menu_controller.HomeMenuController()
 
 
