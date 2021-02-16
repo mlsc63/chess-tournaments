@@ -11,11 +11,14 @@ class RoundInitialiseController:
         list_match = []
 
         while index != self.number_match:
-            match_tuple = ("", "", "")
+            # One match contain in a tuple:
+            #             (['Players Instantiation', 'score'], ['Players Instantiation', 'score'])
+            match_tuple = (['', ''], ['', ''])
             list_match.append(match_tuple)
             print(str(self.round_model.get_name_round()))
             index += 1
         self.round_model.add_match_list(list_match)
+
 
 
 

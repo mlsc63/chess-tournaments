@@ -6,6 +6,8 @@ from models.player_model import PlayerModel
 from models.round_model import RoundModel
 
 
+
+
 class DataControllerSave:
     def __init__(self):
         self.db = TinyDB("db_tournaments.json")
@@ -28,6 +30,7 @@ class DataControllerSave:
             # In each tournament we search all rounds
             for round in tournament.get_round_list():
                 self.db_table_rounds.insert(round.get_instantiation_serialisation_round(index))
+
 
             index += 1
             return home_menu_controller.HomeMenuController()
@@ -94,6 +97,7 @@ class DataControllerLoad:
                                                   round['match_list'],
                                                   round['status'],
                                                   )
+
                     # We add instantiation round in tournament model
                     self.tournament_model.add_round_list_tournament(self.round_model)
 
