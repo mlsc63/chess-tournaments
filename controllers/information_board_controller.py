@@ -3,7 +3,7 @@ from views.menu_view import MenuView
 from list import ListObjet
 from . import home_menu_controller
 from views.data_table_view import DataTableView
-
+# TODO Make better data management
 
 class Init:
 
@@ -47,12 +47,11 @@ class Init:
             columns = ['player 1', 'player 2', 'score']
             number_of_rounds = 1
             print(self.objet.get_name_round())
-            print(str(self.objet.get_match_list()))
-            print(type(self.objet.get_match_list()))
 
             for match in self.objet.get_match_list():
-                print(match[0])
-
+                print(match)
+                # TODO Display the match correctly
+            return home_menu_controller.HomeMenuController()
 
 
 

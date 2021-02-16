@@ -1,3 +1,4 @@
+#TODO Finish the method
 class RoundGlobalController:
     def __init__(self, round):
         self.round = round

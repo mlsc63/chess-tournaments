@@ -1,3 +1,4 @@
+# TODO finish fonctions
 class Entries:
 
     def name(self, msg):
