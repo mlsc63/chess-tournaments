@@ -45,12 +45,13 @@ class Init:
             table_match = []
             index = []
             columns = ['player 1', 'score', 'player 2', 'score']
-            number_of_matchs = 1
+            number_of_matches = 1
 
-            for matchs in self.objet.get_match_list():
-                table_match.append([matchs[0][0], matchs[0][1], matchs[1][0], matchs[1][1]])
-                index.append(number_of_matchs)
-                number_of_matchs += 1
+            for match in self.objet.get_match_list():
+                # TODO table_match.append([match[0][0], match[0][1], match[1][0], match[1][1]]) add .get_name_player()
+                table_match.append([match[0][0], match[0][1], match[1][0], match[1][1]])
+                index.append(number_of_matches)
+                number_of_matches += 1
 
             DataTableView(table_match, index, columns).display()
 

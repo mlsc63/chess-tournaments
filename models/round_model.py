@@ -46,6 +46,9 @@ class RoundModel:
         return {'index': index, 'name': self.name, 'start_time': self.start_time,
                 'end_time': self.end_time, 'match_list': self.match_list, 'status': self.status}
 
+    def set_matches_list(self, matches_list):
+        self.match_list = matches_list
+
     def __repr__(self):
         return 'Nom du round:{0}'.format(self.name)
 

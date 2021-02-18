@@ -28,12 +28,15 @@ class PlayerModel:
 
     # def add_tournament_player(self, tournament):
     # self.tournament = tournament
+    def get_ranked(self):
+        return self.ranked
+
     def get_instantiation_serialisation_player(self, index):
         return {'index': index, 'first_name': self.fist_name, 'name': self.name, 'date_of_bird': self.date_of_bird,
                 'sex': self.sex, 'ranked': self.ranked}
 
     def __repr__(self):
-        return 'Nom: {0} Prenom: {1} '.format(self.name, self.fist_name)
+        return 'Ranked: {0} Prenom: {1} Nom: {2} '.format( self.ranked, self.fist_name, self.name)
 
     def player_table(self):
         return [self.fist_name, self.name, self.date_of_bird, self.sex, self.ranked]
