@@ -47,7 +47,8 @@ class TournamentsModel:
     def add_round_list_tournament(self, round):
         self.round_list.append(round)
 
-    # Get information of tournament
+    def add_score(self, score):
+        self.score = score
 
     def get_players_instantiation_list(self):
         return self.player_list
@@ -60,6 +61,9 @@ class TournamentsModel:
 
     def get_status_tournament(self):
         return self.status
+
+    def get_number_of_players(self):
+        return self.number_of_players
 
     def get_instantiation_serialisation_tournament(self):
         return {'name': self.name,
@@ -91,3 +95,6 @@ class TournamentsModel:
     def tournament_table(self):
         return [self.name, self.location, self.date, self.number_of_turns, self.time_controller,
                 self.number_of_players, self.description, self.status]
+
+    def set_score(self, id_player, score):
+        self.score[id_player] += score

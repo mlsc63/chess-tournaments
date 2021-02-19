@@ -22,7 +22,6 @@ class DataControllerSave:
         data_controller_erase()
         # we search all tournament
         index = 1
-        print(ListObjet.TOURNAMENT)
         for tournament in ListObjet.TOURNAMENT:
 
             self.db_table_tournaments.insert(tournament.get_instantiation_serialisation_tournament())
@@ -77,11 +76,8 @@ class DataControllerLoad:
                                                          tournament['description'],
                                                          tournament['status'],
                                                          tournament['score'])
-                print(str(self.tournament_model))
                 ListObjet.TOURNAMENT.append(self.tournament_model)
-
                 for player in self.db_table_players.search(self.query.index == index):
-                    # print(str(player))
                     self.player_model = PlayerModel(player['first_name'],
                                                     player['name'],
                                                     player['date_of_bird'],
