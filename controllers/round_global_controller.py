@@ -36,8 +36,9 @@ class RoundGlobalController:
             for match in self.round.get_match_list():
                 matches_display = MatchesDisplay()
                 score_player_one, score_player_two = matches_display(self.player_one[index], self.player_two[index])
-                match_tuple = ([self.player_one, score_player_one], [score_player_two, score_player_two])
+                match_tuple = ([self.player_one[index].get_id_player(), score_player_one], [self.player_two[index].get_id_player(), score_player_two])
                 matches_list.append(match_tuple)
+                print(matches_list)
                 index += 1
             self.round.set_matches_list(matches_list)
 

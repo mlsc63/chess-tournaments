@@ -86,6 +86,7 @@ class DataControllerLoad:
                                                     player['sex'],
                                                     player['ranked'],
                                                     self.tournament_model,
+                                                    player['id']
                                                     )
                     # We add instantiation player in tournament model
                     self.tournament_model.add_instantiation_players(self.player_model)

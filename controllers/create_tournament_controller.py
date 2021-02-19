@@ -30,15 +30,16 @@ class CreateTournaments:
 
         # add player
 
-        players = 0
+        id = 0
         print("___Ajout des joueurs___")
-        while players != int(self.tournament_model.number_of_players):
+        while id != int(self.tournament_model.number_of_players):
             self.player_model = PlayerModel()
             self.player_model.add_first_name_player(self.validation.name('Prenom:'))
             self.player_model.add_name_player(self.validation.name('Nom:'))
             self.player_model.add_date_of_bird_player(self.validation.name(('Date de naissance')))
             self.player_model.add_sex_player(self.validation.sex('Sexe:'))
             self.player_model.add_ranked_player(self.validation.number('Niveau du joueur:'))
+            self.player_model.add_id_player(id)
 
             # save player in list
 
@@ -47,7 +48,7 @@ class CreateTournaments:
             ListObjet.PLAYER.append(self.player_model)
 
             print(self.player_model)
-            players += 1
+            id += 1
 
 
         # add round
