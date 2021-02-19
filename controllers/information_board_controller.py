@@ -7,9 +7,10 @@ from views.data_table_view import DataTableView
 
 class Init:
 
-    def __init__(self, objet, value):
+    def __init__(self, objet, value, tournament=''):
         self.objet = objet
         self.value = value
+        self.tournament = tournament
 
     def __call__(self, *args, **kwargs):
         if self.value == "list_of_all_players_in_a_tournament":
@@ -48,8 +49,11 @@ class Init:
             number_of_matches = 1
 
             for match in self.objet.get_match_list():
-                # TODO table_match.append([match[0][0], match[0][1], match[1][0], match[1][1]]) add .get_name_player()
-                table_match.append([match[0][0], match[0][1], match[1][0], match[1][1]])
+                table_match.append([self.tournament.get_players_instantiation_list()[match[0][0]].get_name_player(),
+                                    match[0][1],
+                                    self.tournament.get_players_instantiation_list()[match[1][0]].get_name_player(),
+                                    match[1][1]])
+
                 index.append(number_of_matches)
                 number_of_matches += 1
 
@@ -146,7 +150,7 @@ class ListOfAllMatchesInATournamentv2:
         print('___Selectionner un tournois pour avoir la liste des tours___')
         for round in self.tournament.get_round_list():
 
-            self.tournament_menu.add("auto", round.get_name_round(), Init(round, 'round'))
+            self.tournament_menu.add("auto", round.get_name_round(), Init(round, 'round', self.tournament))
 
         user_choice = self.tournament_view.get_user_choice
         return user_choice
