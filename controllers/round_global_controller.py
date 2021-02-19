@@ -1,6 +1,15 @@
 # TODO Finish the method
 from views.matches_view import MatchesDisplay
 from . import home_menu_controller
+class SetScore:
+    def __init__(self):
+        pass
+    def __call__(self, *args, **kwargs):
+        pass
+
+
+
+
 
 class RoundGlobalController:
     def __init__(self, round):
@@ -19,8 +28,6 @@ class RoundGlobalController:
             players_ranking_ascending = sorted(self.round.get_tournament_round().get_players_instantiation_list(),
                                                key=lambda player: player.ranked)
 
-            # for player_ranking in players_ranking_ascending:
-            # print(player_ranking)
 
             # On traite tout les joueurs pour les mettre dans la liste player 1 ou 2
             index = 1
@@ -31,6 +38,7 @@ class RoundGlobalController:
                     self.player_two.append(player_ranking)
                 index += 1
 
+            # On entre les scores, puis on les enregistre
             index = 0
             matches_list = []
             for match in self.round.get_match_list():
@@ -40,6 +48,15 @@ class RoundGlobalController:
                 matches_list.append(match_tuple)
                 print(matches_list)
                 index += 1
+
+            # On sauvegarde
             self.round.set_matches_list(matches_list)
+
+            # On indique que le round est fini
+            self.round.set_round_status_False()
+
+            #on attrit les score
+
+
 
             return home_menu_controller.HomeMenuController()

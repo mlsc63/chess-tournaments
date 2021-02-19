@@ -26,6 +26,7 @@ class CreateTournaments:
         self.tournament_model.add_description_tournament(self.validation.tournaments_descriptions('Description (option'))
         # save tournament in list
         ListObjet.TOURNAMENT.append(self.tournament_model)
+        print(str(ListObjet.TOURNAMENT))
         print(self.tournament_model)
 
         # add player
@@ -45,8 +46,6 @@ class CreateTournaments:
 
             # save instantiation in model of tournament
             self.tournament_model.add_instantiation_players(self.player_model)
-            ListObjet.PLAYER.append(self.player_model)
-
             print(self.player_model)
             id += 1
 

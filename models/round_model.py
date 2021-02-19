@@ -49,6 +49,9 @@ class RoundModel:
     def set_matches_list(self, matches_list):
         self.match_list = matches_list
 
+    def set_round_status_False(self):
+        self.status = False
+
     def __repr__(self):
         return 'Nom du round:{0}'.format(self.name)
 

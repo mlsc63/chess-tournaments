@@ -149,8 +149,10 @@ class ListOfAllMatchesInATournamentv2:
     def __call__(self, *args, **kwargs):
         print('___Selectionner un tournois pour avoir la liste des tours___')
         for round in self.tournament.get_round_list():
+            if round.get_status_round() == False:
+                self.tournament_menu.add("auto", round.get_name_round(), Init(round, 'round', self.tournament))
+            self.tournament_menu.add("r", 'Retour', home_menu_controller.HomeMenuController())
 
-            self.tournament_menu.add("auto", round.get_name_round(), Init(round, 'round', self.tournament))
 
         user_choice = self.tournament_view.get_user_choice
         return user_choice
@@ -165,6 +167,7 @@ class ListOfAllMatchesInATournament:
     def __call__(self, *args, **kwargs):
         print('___Selectionner un tournois pour avoir la liste des tours___')
         for tournament in ListObjet.TOURNAMENT:
+
             self.tournament_menu.add("auto", tournament.get_name_tournament(),
                                      ListOfAllMatchesInATournamentv2(tournament))
 

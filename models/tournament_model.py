@@ -4,7 +4,7 @@ from models.round_model import RoundModel
 class TournamentsModel:
 
     def __init__(self, name='', location='', date='', number_of_turns='4', time_controller='', number_of_players='',
-                 description='', status=True):
+                 description='', status=True, score=[]):
         self.name = name
         self.location = location
         self.date = date
@@ -16,6 +16,7 @@ class TournamentsModel:
         self.status = status
         self.round_list = []
         self.player_list = []
+        self.score = score
 
     # Set information of tournament
 
@@ -68,7 +69,8 @@ class TournamentsModel:
                 'time_controller': self.time_controller,
                 'number_of_players': self.number_of_players,
                 'description': self.description,
-                'status': self.status}
+                'status': self.status,
+                'score': self.score}
 
     def __repr__(self):
         return 'Tournois: {0}' \
@@ -79,12 +81,13 @@ class TournamentsModel:
                'Nombre de joueurs: {5} ' \
                'Description: {6}' \
                ''.format(self.name,
-                            self.location,
-                            self.date,
-                            self.number_of_turns,
-                            self.time_controller,
-                            self.number_of_players,
-                            self.description)
+                         self.location,
+                         self.date,
+                         self.number_of_turns,
+                         self.time_controller,
+                         self.number_of_players,
+                         self.description)
 
     def tournament_table(self):
-        return [self.name, self.location, self.date, self.number_of_turns, self.time_controller, self.number_of_players, self.description, self.status]
+        return [self.name, self.location, self.date, self.number_of_turns, self.time_controller,
+                self.number_of_players, self.description, self.status]

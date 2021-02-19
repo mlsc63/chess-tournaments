@@ -1,4 +1,3 @@
-#TODO Check why we can t save double time
 from tinydb import TinyDB, Query
 from list import ListObjet
 from . import home_menu_controller
@@ -23,7 +22,9 @@ class DataControllerSave:
         data_controller_erase()
         # we search all tournament
         index = 1
+        print(ListObjet.TOURNAMENT)
         for tournament in ListObjet.TOURNAMENT:
+
             self.db_table_tournaments.insert(tournament.get_instantiation_serialisation_tournament())
             # In each tournament we search all players
             for player in tournament.get_players_instantiation_list():
@@ -34,7 +35,7 @@ class DataControllerSave:
 
 
             index += 1
-            return home_menu_controller.HomeMenuController()
+        return home_menu_controller.HomeMenuController()
 
 
 class DataControllerErase:
@@ -74,7 +75,8 @@ class DataControllerLoad:
                                                          tournament['time_controller'],
                                                          tournament['number_of_players'],
                                                          tournament['description'],
-                                                         tournament['status'])
+                                                         tournament['status'],
+                                                         tournament['score'])
                 print(str(self.tournament_model))
                 ListObjet.TOURNAMENT.append(self.tournament_model)
 
