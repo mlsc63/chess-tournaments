@@ -1,7 +1,11 @@
 # TODO Finish the method
 from views.matches_view import MatchesDisplay
 from . import home_menu_controller
-
+class MakeList:
+    def __init__(self):
+        pass
+    def __call__(self, *args, **kwargs):
+        pass
 
 class SetScore:
     def __init__(self):
@@ -18,7 +22,6 @@ class SetScore:
         self.id_player_two = id_player_two
         self.tounament = round.get_tournament_round()
 
-
         if score_player_one < score_player_two:
             self.tounament.set_score(id_player_one, 0)
             self.tounament.set_score(id_player_two, 1)
@@ -28,9 +31,6 @@ class SetScore:
         if score_player_one == score_player_two:
             self.tounament.set_score(id_player_one, 0.5)
             self.tounament.set_score(id_player_two, 0.5)
-
-
-
 
 
 class RoundGlobalController:
@@ -75,8 +75,14 @@ class RoundGlobalController:
                 self.set_score(score_player_one, int(self.player_one[index].get_id_player()),
                                score_player_two, int(self.player_two[index].get_id_player()),
                                self.round)
-                index += 1
+                # On ajoute dans le tournois le meet pour avoir l'information dans les autres matchs
 
+                self.round.get_tournament_round().set_meet_tournament([self.player_one[index].get_id_player(),
+                                                                       self.player_two[index].get_id_player()])
+                print(str(self.round.get_tournament_round().get_meet_tournament()))
+
+
+                index += 1
 
             # On sauvegarde
             self.round.set_matches_list(matches_list)
@@ -85,3 +91,21 @@ class RoundGlobalController:
             # on attrit les score
 
             return home_menu_controller.HomeMenuController()
+
+        if self.round.get_name_round() != 'Round 1':
+            score = self.round.get_tournament_round().get_score()
+            # On trie les score pas odre croissant mais on récupére juste les index
+            score_list = sorted(range(len(score)), key=lambda k: score[k])
+
+
+            #####################
+            player_one_list, player_two_list = MakeList(score_list)
+            for match in self.round.get_match_list():
+                pass
+
+
+
+
+            #trier les joueur par niveau
+            #Faire les match
+               #si les joueur n'ont pas jouer ensemble

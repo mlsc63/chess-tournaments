@@ -4,7 +4,7 @@ from models.round_model import RoundModel
 class TournamentsModel:
 
     def __init__(self, name='', location='', date='', number_of_turns='4', time_controller='', number_of_players='',
-                 description='', status=True, score=[]):
+                 description='', status=True, score=[], meet=[]):
         self.name = name
         self.location = location
         self.date = date
@@ -17,6 +17,7 @@ class TournamentsModel:
         self.round_list = []
         self.player_list = []
         self.score = score
+        self.meet = meet
 
     # Set information of tournament
 
@@ -74,7 +75,8 @@ class TournamentsModel:
                 'number_of_players': self.number_of_players,
                 'description': self.description,
                 'status': self.status,
-                'score': self.score}
+                'score': self.score,
+                'meet': self.meet}
 
     def __repr__(self):
         return 'Tournois: {0}' \
@@ -98,3 +100,12 @@ class TournamentsModel:
 
     def set_score(self, id_player, score):
         self.score[id_player] += score
+
+    def get_score(self):
+        return self.score
+
+    def set_meet_tournament(self, meet):
+        self.meet.append(meet)
+
+    def get_meet_tournament(self):
+        return self.meet

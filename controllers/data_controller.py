@@ -75,7 +75,8 @@ class DataControllerLoad:
                                                          tournament['number_of_players'],
                                                          tournament['description'],
                                                          tournament['status'],
-                                                         tournament['score'])
+                                                         tournament['score'],
+                                                         tournament['meet'])
                 ListObjet.TOURNAMENT.append(self.tournament_model)
                 for player in self.db_table_players.search(self.query.index == index):
                     self.player_model = PlayerModel(player['first_name'],
