@@ -162,9 +162,39 @@ class RoundGlobalController:
 
             #####################
             make_list = MakeList()
-            
             self.player_one, self.player_two = make_list(score_list, self.round)
+            index = 0
+            matches_list = []
+            for match in self.round.get_match_list():
+                matches_display = MatchesDisplay()
 
+                score_player_one, score_player_two = matches_display(self.round.get_tournament_round().get_players_instantiation_list()[self.player_one[index]],
+                                                                     self.round.get_tournament_round().get_players_instantiation_list()[self.player_two[index]])
+
+
+                # On prépare la sauvergarde dans le match_tuple
+                match_tuple = ([self.player_one[index], score_player_one],
+                               [self.player_two[index], score_player_two])
+                matches_list.append(match_tuple)
+                self.set_score(score_player_one, int(self.player_one[index]),
+                               score_player_two, int(self.player_two[index]),
+                               self.round)
+                # On ajoute dans le tournois le meet pour avoir l'information dans les autres matchs
+
+                self.round.get_tournament_round().set_meet_tournament([self.player_one[index],
+                                                                       self.player_two[index]])
+                print(str(self.round.get_tournament_round().get_meet_tournament()))
+
+
+                index += 1
+
+            # On sauvegarde
+            self.round.set_matches_list(matches_list)
+            # On indique que le round est fini
+            self.round.set_round_status_False()
+            # on attrit les score
+
+            return home_menu_controller.HomeMenuController()
 
 
 
