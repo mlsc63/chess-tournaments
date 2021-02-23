@@ -3,9 +3,69 @@ from views.matches_view import MatchesDisplay
 from . import home_menu_controller
 class MakeList:
     def __init__(self):
-        pass
-    def __call__(self, *args, **kwargs):
-        pass
+        self.player_list = ''
+        self.round = ''
+    def __call__(self, player_list, round):
+        self.player_list = player_list
+        self.round = round
+        return_player_one_list = []
+        return_player_two_list = []
+
+        index = 0
+        for id_player in self.player_list:
+            return_player_one_list.append(id_player)
+            position_adversaire = len(self.player_list) // 2
+            # On veut savoir si cette adversaire a déjà joueur conter notre jouer 1
+            for meet in self.round.get_tournament_round().get_meet_tournament():
+                print('on compare si ' + str(meet[0]) + ' a pas jouer contre ' + str(self.player_list[position_adversaire]))
+                print('on compare si ' + str(meet[1]) + ' a pas jouer contre ' + str(self.player_list[position_adversaire]))
+
+                if (meet[0] == self.player_list[position_adversaire]) or (meet[1] == self.player_list[position_adversaire]):
+                    print('index' + str(index))
+                    # si les deux joueurs on deja jouer ensemble on incremente la position, si on est en dehors de la liste on la décrememente
+                    print('Le joueurs 1 a déjà joué avec le player 2')
+                    if len(player_list) <= (position_adversaire + 1):
+                        print('Oui on peut aller chercher un adversaire +1')
+                        position_adversaire += 1
+                        break
+                    else:
+                        # mettre une condition quand on a fait le tours de tout les joueurs
+                        print("Non il n'y a pas d'autre adversaire a la position + 1")
+                        position_adversaire -= 1
+                        break
+                # Cette adversaire n'a pas encore joué avec le joueurs 1 donc on l'enregistre
+                else:
+                    print('index' + str(index))
+                    print('le joueur 1 n a pas encore joué avec le player 2')
+                    return_player_two_list.append(self.player_list[position_adversaire])
+
+                    print('Je veux supptimer les id des joueurs ' + str(self.player_list[position_adversaire]) + ' et ' + str(self.player_list[index]))
+
+                    del self.player_list[index]
+                    del self.player_list[position_adversaire - 1]
+
+
+                    print('List joueur 1' + str(return_player_one_list))
+                    print('list joueur 2' + str(return_player_two_list))
+
+                    if self.player_list == []:
+                        return
+
+                    break
+            index += 1
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class SetScore:
     def __init__(self):
@@ -99,9 +159,9 @@ class RoundGlobalController:
 
 
             #####################
-            player_one_list, player_two_list = MakeList(score_list)
-            for match in self.round.get_match_list():
-                pass
+            make_list = MakeList()
+            make_list(score_list, self.round)
+
 
 
 
