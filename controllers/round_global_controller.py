@@ -5,25 +5,37 @@ class MakeList:
     def __init__(self):
         self.player_list = ''
         self.round = ''
+        self.tournament = ''
     def __call__(self, player_list, round):
         self.player_list = player_list
         self.round = round
+        self.tournament = self.round.get_tournament_round()
         return_player_one_list = []
         return_player_two_list = []
+        print(self.player_list)
+
 
         index = 0
-        for id_player in self.player_list:
-            return_player_one_list.append(id_player)
-            position_adversaire = len(self.player_list) // 2
-            # On veut savoir si cette adversaire a déjà joueur conter notre jouer 1
-            for meet in self.round.get_tournament_round().get_meet_tournament():
-                print('on compare si ' + str(meet[0]) + ' a pas jouer contre ' + str(self.player_list[position_adversaire]))
-                print('on compare si ' + str(meet[1]) + ' a pas jouer contre ' + str(self.player_list[position_adversaire]))
+        for player_id in self.player_list:
+            # On enregistre le player un dans la liste de retour
+            print('le premier joueur')
 
-                if (meet[0] == self.player_list[position_adversaire]) or (meet[1] == self.player_list[position_adversaire]):
-                    print('index' + str(index))
-                    # si les deux joueurs on deja jouer ensemble on incremente la position, si on est en dehors de la liste on la décrememente
-                    print('Le joueurs 1 a déjà joué avec le player 2')
+            return_player_one_list.append(player_list[0])
+
+            # On veut savoir si cette adversaire a déjà joueur conter notre jouer 1
+            position_adversaire = len(self.player_list) // 2
+            for meet in self.round.get_tournament_round().get_meet_tournament():
+                #####
+                print('on compare si ' + str(meet[0]) + ' a pas jouer contre ' + str(
+                    self.player_list[position_adversaire]))
+                print('on compare si ' + str(meet[1]) + ' a pas jouer contre ' + str(
+                    self.player_list[position_adversaire]))
+                #####
+                # On regarde
+                if (((meet[0] == self.player_list[position_adversaire]) or (meet[0] == self.player_list[index])) and
+                    ((meet[1] == self.player_list[position_adversaire]) or (meet[1] == self.player_list[index]))):
+
+
                     if len(player_list) <= (position_adversaire + 1):
                         print('Oui on peut aller chercher un adversaire +1')
                         position_adversaire += 1
@@ -33,37 +45,27 @@ class MakeList:
                         print("Non il n'y a pas d'autre adversaire a la position + 1")
                         position_adversaire -= 1
                         break
+
                 # Cette adversaire n'a pas encore joué avec le joueurs 1 donc on l'enregistre
                 else:
-                    print('index' + str(index))
+                    print(self.player_list)
+                    print(index)
                     print('le joueur 1 n a pas encore joué avec le player 2')
                     return_player_two_list.append(self.player_list[position_adversaire])
+                    print('Je veux supptimer les id des joueurs ' + str(self.player_list[position_adversaire]) +
+                          ' et ' + str(self.player_list[index]))
 
-                    print('Je veux supptimer les id des joueurs ' + str(self.player_list[position_adversaire]) + ' et ' + str(self.player_list[index]))
-
-                    del self.player_list[index]
+                    del self.player_list[0]
                     del self.player_list[position_adversaire - 1]
-
-
+                    print(str(self.player_list))
                     print('List joueur 1' + str(return_player_one_list))
                     print('list joueur 2' + str(return_player_two_list))
 
                     if self.player_list == []:
-                        return
+                        return return_player_one_list, return_player_two_list
 
+                    index += 1
                     break
-            index += 1
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -160,12 +162,9 @@ class RoundGlobalController:
 
             #####################
             make_list = MakeList()
-            make_list(score_list, self.round)
+            
+            self.player_one, self.player_two = make_list(score_list, self.round)
 
 
 
 
-
-            #trier les joueur par niveau
-            #Faire les match
-               #si les joueur n'ont pas jouer ensemble
