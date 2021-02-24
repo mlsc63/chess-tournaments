@@ -12,58 +12,63 @@ class MakeList:
         self.tournament = self.round.get_tournament_round()
         return_player_one_list = []
         return_player_two_list = []
-        print(self.player_list)
+        print(str(self.player_list) + str(len(self.player_list)))
 
 
         index = 0
-        for player_id in self.player_list:
-            # On enregistre le player un dans la liste de retour
-            print('le premier joueur')
+        while self.player_list != []:
+            for player_id in self.player_list:
+                # On enregistre le player un dans la liste de retour
+                print('le premier joueur')
+                return_player_one_list.append(player_list[0])
+                # On veut savoir si cette adversaire a déjà joueur conter notre jouer 1
+                position_adversaries = len(self.player_list) // 2
+                position_adversaries_out_of_range_positive = False
+                position_adversaries_out_of_range_negative = False
 
-            return_player_one_list.append(player_list[0])
 
-            # On veut savoir si cette adversaire a déjà joueur conter notre jouer 1
-            position_adversaire = len(self.player_list) // 2
-            while True:
+                #on lui trouve un adversaire
+                while True:
+                    for meet in self.round.get_tournament_round().get_meet_tournament():
+                        print('meet[0] = ' + str(meet[0]) + ' == ' + str(self.player_list[position_adversaries]))
+                        print('meet[0] = ' + str(meet[0]) + ' == ' + str(self.player_list[0]))
+                        print('meet[1] = ' + str(meet[1]) + ' == ' + str(self.player_list[position_adversaries]))
+                        print('meet[1] = ' + str(meet[1]) + ' == ' + str(self.player_list[0]))
+                        if (((meet[0] == self.player_list[position_adversaries]) or (meet[0] == self.player_list[0])) and
+                            ((meet[1] == self.player_list[position_adversaries]) or (meet[1] == self.player_list[0]))):
+                            print('les deux adversaire on déjà joué enssemble essayon de trouver un autre adversaire')
+                            if (len(player_list)-1) <= (position_adversaries + 1):
+                                print('Oui on peut aller chercher un adversaire +1')
+                                position_adversaries += 1
+                                print('La nouvelle position adversaire est ' + str(position_adversaries))
+                                break
+                            else:
+                                # mettre une condition quand on a fait le tours de tout les joueurs
+                                print("Non il n'y a pas d'autre adversaire a la position + 1")
+                                position_adversaries -= 1
+                                print('La nouvelle position adversaire est ' + str(position_adversaries))
+                                break
+                    break
 
-                for meet in self.round.get_tournament_round().get_meet_tournament():
-                    #####
-                    print('meet[0] = ' + str(meet[0]) + ' == ' + str(self.player_list[position_adversaire]))
-                    print('meet[0] = ' + str(meet[0]) + ' == ' + str(self.player_list[0]))
-                    print('meet[1] = ' + str(meet[1]) + ' == ' + str(self.player_list[position_adversaire]))
-                    print('meet[1] = ' + str(meet[1]) + ' == ' + str(self.player_list[0]))
-                    if (((meet[0] == self.player_list[position_adversaire]) or (meet[0] == self.player_list[0])) and
-                        ((meet[1] == self.player_list[position_adversaire]) or (meet[1] == self.player_list[0]))):
 
-                        if len(player_list) <= (position_adversaire + 1):
-                            print('Oui on peut aller chercher un adversaire +1')
-                            position_adversaire += 1
-                            break
-                        else:
-                            # mettre une condition quand on a fait le tours de tout les joueurs
-                            print("Non il n'y a pas d'autre adversaire a la position + 1")
-                            position_adversaire -= 1
-                            break
-                break
+                print(self.player_list)
+                print(index)
+                print('le joueur 1 n a pas encore joué avec le player 2')
+                return_player_two_list.append(self.player_list[position_adversaries])
+                print('Je veux supptimer les id des joueurs ' + str(self.player_list[position_adversaries]) +
+                      ' et ' + str(self.player_list[index]))
 
-            print(self.player_list)
-            print(index)
-            print('le joueur 1 n a pas encore joué avec le player 2')
-            return_player_two_list.append(self.player_list[position_adversaire])
-            print('Je veux supptimer les id des joueurs ' + str(self.player_list[position_adversaire]) +
-                  ' et ' + str(self.player_list[index]))
+                del self.player_list[0]
+                del self.player_list[position_adversaries - 1]
+                print(str(self.player_list))
+                print('List joueur 1' + str(return_player_one_list))
+                print('list joueur 2' + str(return_player_two_list))
+                index += 1
 
-            del self.player_list[0]
-            del self.player_list[position_adversaire - 1]
-            print(str(self.player_list))
-            print('List joueur 1' + str(return_player_one_list))
-            print('list joueur 2' + str(return_player_two_list))
 
-            if self.player_list == []:
-                print('finisj')
-                return return_player_one_list, return_player_two_list
+        return return_player_one_list, return_player_two_list
 
-            index += 1
+
 
 
 
