@@ -1,11 +1,14 @@
 # TODO Finish the method
 from views.matches_view import MatchesDisplay
 from . import home_menu_controller
+
+
 class MakeList:
     def __init__(self):
         self.player_list = ''
         self.round = ''
         self.tournament = ''
+
     def __call__(self, player_list, round):
         self.player_list = player_list
         self.round = round
@@ -13,7 +16,6 @@ class MakeList:
         return_player_one_list = []
         return_player_two_list = []
         print(str(self.player_list) + str(len(self.player_list)))
-
 
         index = 0
         while self.player_list != []:
@@ -26,33 +28,61 @@ class MakeList:
                 position_adversaries_out_of_range_positive = False
                 position_adversaries_out_of_range_negative = False
 
-
-                #on lui trouve un adversaire
+                # on lui trouve un adversaire
                 while True:
                     for meet in self.round.get_tournament_round().get_meet_tournament():
                         print('meet[0] = ' + str(meet[0]) + ' == ' + str(self.player_list[position_adversaries]))
                         print('meet[0] = ' + str(meet[0]) + ' == ' + str(self.player_list[0]))
                         print('meet[1] = ' + str(meet[1]) + ' == ' + str(self.player_list[position_adversaries]))
                         print('meet[1] = ' + str(meet[1]) + ' == ' + str(self.player_list[0]))
-                        if (((meet[0] == self.player_list[position_adversaries]) or (meet[0] == self.player_list[0])) and
-                            ((meet[1] == self.player_list[position_adversaries]) or (meet[1] == self.player_list[0]))):
+                        if (((meet[0] == self.player_list[position_adversaries]) or (
+                                meet[0] == self.player_list[0])) and
+                                ((meet[1] == self.player_list[position_adversaries]) or (
+                                        meet[1] == self.player_list[0]))):
                             print('les deux adversaire on déjà joué enssemble essayon de trouver un autre adversaire')
-                            if (len(player_list)-1) <= (position_adversaries + 1):
-                                print('Oui on peut aller chercher un adversaire +1')
-                                position_adversaries += 1
-                                print('La nouvelle position adversaire est ' + str(position_adversaries))
-                                break
+
+                            #On antcipe et on regarde si on peut avoir un joueur adverse a des possition + ou -
+
+                            if not ((len(player_list) - 1) <= (position_adversaries + 1)):
+                                position_adversaries_out_of_range_positive = True
+
+                            if not (len(player_list)) > 1:
+                                position_adversaries_out_of_range_negative = True
+
+
+
+                            # Si on a déjà tout scanné, que le joueurs 1 a déjà joué avec tout le monde alors il jouera avec la premiere personne de la dewieme motié
+                            if (position_adversaries_out_of_range_negative == True) and (position_adversaries_out_of_range_positive == True):
+                                position_adversaries = len(self.player_list) // 2
+                                continue
+                            if len(player_list) == 2:
+                                # il joue ensemble pas le choix
+                                continue
+
                             else:
-                                # mettre une condition quand on a fait le tours de tout les joueurs
-                                print("Non il n'y a pas d'autre adversaire a la position + 1")
-                                position_adversaries -= 1
-                                print('La nouvelle position adversaire est ' + str(position_adversaries))
-                                break
+
+                                if (len(player_list) - 1) <= (position_adversaries + 1):
+                                    print('Oui on peut aller chercher un adversaire +1')
+                                    position_adversaries += 1
+                                    print('La nouvelle position adversaire est ' + str(position_adversaries))
+                                    break
+                                else:
+                                    # On ne trouve pas d'adversaire en incrémentent la liste
+                                    position_adversaries_out_of_range_positive = True
+                                    if len(player_list) > 1:
+                                        print('on a fait toute la liste on ne trouve pas dadversaire')
+
+                                    # mettre une condition quand on a fait le tours de tout les joueurs
+                                    print("Non il n'y a pas d'autre adversaire a la position + 1")
+                                    position_adversaries -= 1
+                                    print('La nouvelle position adversaibre est ' + str(position_adversaries))
+                                    break
                     break
 
-
                 print(self.player_list)
+                print('player position' + str(position_adversaries))
                 print(index)
+                print(self.player_list[position_adversaries])
                 print('le joueur 1 n a pas encore joué avec le player 2')
                 return_player_two_list.append(self.player_list[position_adversaries])
                 print('Je veux supptimer les id des joueurs ' + str(self.player_list[position_adversaries]) +
@@ -65,13 +95,7 @@ class MakeList:
                 print('list joueur 2' + str(return_player_two_list))
                 index += 1
 
-
         return return_player_one_list, return_player_two_list
-
-
-
-
-
 
 
 class SetScore:
@@ -148,7 +172,6 @@ class RoundGlobalController:
                                                                        self.player_two[index].get_id_player()])
                 print(str(self.round.get_tournament_round().get_meet_tournament()))
 
-
                 index += 1
 
             # On sauvegarde
@@ -164,7 +187,6 @@ class RoundGlobalController:
             # On trie les score pas odre croissant mais on récupére juste les index
             score_list = sorted(range(len(score)), key=lambda k: score[k])
 
-
             #####################
             make_list = MakeList()
             # self.player_one, self.player_two = make_list(score_list, self.round)
@@ -173,11 +195,10 @@ class RoundGlobalController:
             matches_list = []
             print(str(self.player_one) + str(self.player_two))
             for match in self.round.get_match_list():
-
                 matches_display = MatchesDisplay()
-                score_player_one, score_player_two = matches_display(self.round.get_tournament_round().get_players_instantiation_list()[self.player_one[index]],
-                                                                     self.round.get_tournament_round().get_players_instantiation_list()[self.player_two[index]])
-
+                score_player_one, score_player_two = matches_display(
+                    self.round.get_tournament_round().get_players_instantiation_list()[self.player_one[index]],
+                    self.round.get_tournament_round().get_players_instantiation_list()[self.player_two[index]])
 
                 # On prépare la sauvergarde dans le match_tuple
                 match_tuple = ([self.player_one[index], score_player_one],
@@ -193,7 +214,6 @@ class RoundGlobalController:
                                                                        self.player_two[index]])
                 print(str(self.round.get_tournament_round().get_meet_tournament()))
 
-
                 index += 1
 
             # On sauvegarde
@@ -203,6 +223,3 @@ class RoundGlobalController:
             # on attrit les score
 
             return home_menu_controller.HomeMenuController()
-
-
-
