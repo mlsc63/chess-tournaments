@@ -109,3 +109,9 @@ class TournamentsModel:
 
     def get_meet_tournament(self):
         return self.meet
+
+    def get_tournament_turns(self):
+        return self.number_of_turns
+
+    def set_status_tournament_false(self):
+        self.status = False

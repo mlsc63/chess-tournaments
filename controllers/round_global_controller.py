@@ -1,4 +1,3 @@
-# TODO Finish the method
 from views.matches_view import MatchesDisplay
 from . import home_menu_controller
 
@@ -180,6 +179,12 @@ class RoundGlobalController:
             self.round.set_round_status_False()
             # on attrit les score
 
+            #On verrifie si c'est le dernier round pour passer le tournois en completed
+
+            if self.round.get_tournament_round().get_tournament_turn() == self.round.get_name_round()[-1]:
+                self.round.get_tournament_round().set_status_tournament_false()
+
+
             return home_menu_controller.HomeMenuController()
 
         if self.round.get_name_round() != 'Round 1':
@@ -221,5 +226,9 @@ class RoundGlobalController:
             # On indique que le round est fini
             self.round.set_round_status_False()
             # on attrit les score
+
+            # On verrifie si c'est le dernier round pour passer le tournois en completed
+            if self.round.get_tournament_round().get_tournament_turns() == self.round.get_name_round()[-1]:
+                self.round.get_tournament_round().set_status_tournament_false()
 
             return home_menu_controller.HomeMenuController()
