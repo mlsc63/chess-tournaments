@@ -9,6 +9,11 @@ from controllers.information_board_controller import ListOfAllPlayersInATourname
 
 
 class HomeMenuController:
+    """
+    Works with menu_model and menu view for the menu display,
+    three parameters are sent (Key entered by the user, the message displayed, and the function)
+    We return the function associated with the key
+    """
     def __init__(self):
         self.menu = MenuModel()
         self.view = MenuView(self.menu)
@@ -16,10 +21,9 @@ class HomeMenuController:
 
     def __call__(self):
         # We check if there is a tournament in progress
-
         print('___Acceuil___')
-        # We check if save data exist
 
+        # We check if save data exist
         if len(ListObjet.TOURNAMENT) == 0:
             data_controller_load = DataControllerLoad()
             data_controller_load()

@@ -6,9 +6,12 @@ from models.player_model import PlayerModel
 from models.round_model import RoundModel
 
 
-
-
 class DataControllerSave:
+    """
+    Before saving, we delete all the data in the JSON files. The tournaments to be saved are in the list (ListObjet).
+    Work with three tables (Tournaments, players, and rounds)
+    Serialization is done directly by object methods, only an index and given as a parameter to index certain data
+    """
     def __init__(self):
         self.db = TinyDB("db_tournaments.json")
         self.db_table_tournaments = self.db.table('tournaments')
@@ -32,12 +35,14 @@ class DataControllerSave:
             for round in tournament.get_round_list():
                 self.db_table_rounds.insert(round.get_instantiation_serialisation_round(index))
 
-
             index += 1
         return home_menu_controller.HomeMenuController()
 
 
 class DataControllerErase:
+    """
+    Clear all three tables
+    """
     def __init__(self):
         self.db = TinyDB("db_tournaments.json")
         self.db_table_tournaments = self.db.table('tournaments')
@@ -50,8 +55,12 @@ class DataControllerErase:
         self.db_table_rounds.truncate()
 
 
-
 class DataControllerLoad:
+    """
+    Try to read the data. Otherwise we consider that there is no data.
+    We load the tournaments, then the players who have an equal idea of the tournaments,
+    then we do the same with the rounds
+    """
     def __init__(self):
         self.db = TinyDB("db_tournaments.json")
         self.db_table_tournaments = self.db.table('tournaments')
@@ -107,4 +116,3 @@ class DataControllerLoad:
 
         except:
             print('___No DATA___')
-

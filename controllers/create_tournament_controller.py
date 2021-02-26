@@ -8,6 +8,12 @@ from .round_initialise_controller import RoundInitialiseController
 
 
 class CreateTournaments:
+    """
+    Creation of tournaments: Instantiation of tournaments, players, rounds.
+    Contains player and round instantiations
+    The instantiation of the tounois is saved in ListObjet
+    Returns the menu function
+    """
 
     def __init__(self):
         self.validation = Entries()
@@ -34,25 +40,21 @@ class CreateTournaments:
         print(self.tournament_model)
 
         # add player
-
-        id = 0
+        id_players = 0
         print("___Ajout des joueurs___")
-        while id != int(self.tournament_model.number_of_players):
+        while id_players != int(self.tournament_model.number_of_players):
             self.player_model = PlayerModel()
             self.player_model.add_first_name_player(self.validation.name('Prenom:'))
             self.player_model.add_name_player(self.validation.name('Nom:'))
             self.player_model.add_date_of_bird_player(self.validation.name(('Date de naissance')))
             self.player_model.add_sex_player(self.validation.sex('Sexe:'))
             self.player_model.add_ranked_player(self.validation.number('Niveau du joueur:'))
-            self.player_model.add_id_player(id)
-
-            # save player in list
+            self.player_model.add_id_player(id_players)
 
             # save instantiation in model of tournament
             self.tournament_model.add_instantiation_players(self.player_model)
             print(self.player_model)
-            id += 1
-
+            id_players += 1
 
         # add round
         rounds = 0

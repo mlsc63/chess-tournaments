@@ -1,5 +1,6 @@
 class PlayerModel:
 
+
     def __init__(self, first_name='', name='', date_of_bird="", sex='', ranked='', tournament='', id=''):
         self.fist_name = first_name
         self.name = name

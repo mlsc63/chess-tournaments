@@ -1,5 +1,5 @@
-
 class MenuEntry:
+
 
     def __init__(self, key, option, handler):
         self.option = option
