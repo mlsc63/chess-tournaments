@@ -28,7 +28,7 @@ class CreateTournaments:
         self.tournament_model.add_location_tournament(self.validation.tournament_location('Lieu:\n'))
         self.tournament_model.add_number_of_turns_tournament(self.validation.tournament_number_of_turns('Nombre de tours:\n'))
         self.tournament_model.add_time_controller_tournament(self.validation.tournaments_time_controller('Contrôle du temps:\n'))
-        self.tournament_model.add_number_of_players_tournament(int(self.validation.number('Nombre de participants (Nombre pair):\n')))
+        self.tournament_model.add_number_of_players_tournament(self.validation.number_of_players('Nombre de participants (Nombre pair):\n'))
         self.tournament_model.add_description_tournament(self.validation.tournaments_descriptions('Description (option'))
         self.tournament_model.add_score([0] * self.tournament_model.get_number_of_players())
 

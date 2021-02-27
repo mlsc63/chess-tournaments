@@ -69,9 +69,7 @@ class MakeList:
                             else:
 
                                 if (len(player_list) - 1) <= (position_adversaries + 1):
-                                    # print('Oui on peut aller chercher un adversaire +1')
                                     position_adversaries += 1
-                                    # print('La nouvelle position adverse est ' + str(position_adversaries))
                                     break
                                 else:
                                     # We do not find an opponent by increasing the list

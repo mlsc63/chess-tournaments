@@ -1,4 +1,3 @@
-from models.round_model import RoundModel
 
 
 class TournamentsModel:

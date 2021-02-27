@@ -1,6 +1,5 @@
 class PlayerModel:
 
-
     def __init__(self, first_name='', name='', date_of_bird="", sex='', ranked='', tournament='', id=''):
         self.fist_name = first_name
         self.name = name
@@ -46,5 +45,4 @@ class PlayerModel:
         return [self.fist_name, self.name, self.date_of_bird, self.sex, self.ranked]
 
     def __repr__(self):
-        return 'Ranked: {0} Prenom: {1} Nom: {2} '.format( self.ranked, self.fist_name, self.name)
-
+        return 'Ranked: {0} Prenom: {1} Nom: {2} '.format(self.ranked, self.fist_name, self.name)

@@ -6,7 +6,7 @@ from .round_global_controller import RoundGlobalController
 class RoundMenuController:
     """
     Same principle as the HomeMenuController class:
-     -We only display the first tounrois that has not been done
+     -We only display the first tournament that has not been done
     """
 
     def __init__(self):
@@ -16,19 +16,18 @@ class RoundMenuController:
 
     def __call__(self):
 
-        index = 0
         print('___Rounds en cour___')
 
         # get objet in the list on list.py
         for tournament in self.list_tournaments:
 
             # If the tournament is done we don't display
-            if tournament.get_status_tournament() == True:
+            if tournament.get_status_tournament():
 
                 # get objet on the tournament model and get information with round model
                 for round_in_tournament in tournament.get_round_list():
 
-                    if round_in_tournament.get_status_round() == True:
+                    if round_in_tournament.get_status_round():
                         # print(round_in_tournament)
                         self.round_menu.add("auto", 'Faire le ' + round_in_tournament.get_name_round() + ' du tournoi: '
                                             + tournament.get_name_tournament() + '?',

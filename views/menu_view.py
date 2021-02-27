@@ -1,4 +1,3 @@
-
 class MenuView:
 
     def __init__(self, menu):
@@ -11,6 +10,5 @@ class MenuView:
 
     def get_user_choice(self):
         self.display()
-
         value = input(">>")
         return self.menu.entries[value].handler
