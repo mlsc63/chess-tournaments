@@ -36,9 +36,14 @@ class Entries:
 
     def tournament_number_of_turns(self, msg):
         while True:
-            # Todo
             print(msg)
-            return input()
+            try:
+                return_value = int(input())
+                if return_value > 0:
+                    return return_value
+            except:
+                print('Veuillez insérer un nombre de tours valide')
+
 
     def tournaments_time_controller(self, msg):
         while True:
@@ -76,10 +81,9 @@ class Entries:
 
 
 
-    def number(self, number):
+    def player_level(self, number):
         while True:
             print(number)
-            return_value = input()
             try:
                 return_value = int(input())
                 if return_value > 0:

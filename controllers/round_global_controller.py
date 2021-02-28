@@ -12,6 +12,7 @@ class MakeList:
      -If there is no solution then he will play with a player he has played with before.
     If there are two players left in the list then they will automatically play together
     """
+
     def __init__(self):
         self.player_list = ''
         self.round = ''
@@ -124,6 +125,7 @@ class RoundGlobalController:
      - Make two lists based on their ranking. A first list of players and a second adversary
     Manage player display and score feedback
     """
+
     def __init__(self, round):
         self.round = round
         # Number of match
@@ -179,7 +181,10 @@ class RoundGlobalController:
             # We attribute the scores
 
             # We check if it's the last round to pass the tournament in completed
-            if self.round.get_tournament_round().get_tournament_turn() == self.round.get_name_round()[-1]:
+            character_to_convert = self.round.get_name_round()[-1]
+            converted_character = int(character_to_convert)
+
+            if self.round.get_tournament_round().get_tournament_turns() == converted_character:
                 self.round.get_tournament_round().set_status_tournament_false()
             return home_menu_controller.HomeMenuController()
 

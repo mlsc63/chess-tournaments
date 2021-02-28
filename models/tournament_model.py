@@ -2,7 +2,7 @@
 
 class TournamentsModel:
 
-    def __init__(self, name='', location='', date='', number_of_turns='4', time_controller='', number_of_players='',
+    def __init__(self, name='', location='', date='', number_of_turns = 4, time_controller='', number_of_players='',
                  description='', status=True, score=[], meet=[]):
         self.name = name
         self.location = location

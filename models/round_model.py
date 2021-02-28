@@ -42,7 +42,7 @@ class RoundModel:
         return self.tournament
 
     def get_instantiation_serialisation_round(self, index):
-        print(self.match_list)
+        # print(self.match_list)
         return {'index': index, 'name': self.name, 'start_time': self.start_time,
                 'end_time': self.end_time, 'match_list': self.match_list, 'status': self.status}
 
