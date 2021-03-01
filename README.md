@@ -1,6 +1,7 @@
 #                                                                          Chess Tournaments
 
-#Introduction 
+# Introduction 
+
 Cette application a pour but de gérer l'organisation des tournois d'échecs suisse.
 Il permet de créer un tournois, d'ajouter des joueurs et de générer des matchs suivant les classements des joueurs, 
 Une base de données permet de sortir de l'application à tout moment sans perdre les informations.
