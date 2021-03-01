@@ -1,4 +1,4 @@
-# chess-tournaments
+#                                                                          Chess Tournaments
 
 #Introduction 
 Cette application a pour but de gérer l'organisation des tournois d'échecs suisse.
