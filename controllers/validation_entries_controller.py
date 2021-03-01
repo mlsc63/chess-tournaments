@@ -48,7 +48,9 @@ class Entries:
         while True:
             print(msg)
             return_value = input()
-            if return_value == ('bullet' or 'blitz' or 'coup rapide'):
+            if return_value == 'bullet'\
+                    or return_value == 'blitz' \
+                    or return_value == 'coup rapide':
                 return return_value
             else:
                 print("Veuillez insérer un contrôlleur de"
@@ -63,7 +65,7 @@ class Entries:
         while True:
             print(sex)
             return_value = input()
-            if return_value == ('m' or 'f'):
+            if return_value == 'm' or return_value == 'f':
                 return return_value
             else:
                 print("Veuillez insérer un sexe valide (f ou m)")
