@@ -1,11 +1,11 @@
-# chess-tournaments-v2
+# chess-tournaments
 
 #Introduction 
 Cette application a pour but de gérer l'organisation des tournois d'échecs suisse.
 Il permet de créer un tournois, d'ajouter des joueurs et de générer des matchs suivant les classements des joueurs, 
 Une base de données permet de sortir de l'application à tout moment sans perdre les informations.
 
-#Notice :
+# Notice :
 
 Lors de l'ouverture de l'application le menu général apparaitra :
 
@@ -44,7 +44,7 @@ s) Sauvegarde l'intégralité des informations, celle-ci seront restauré automa
 e) Efface la base de données.
 
 
-Installation
+# Installation
 
 -Avec CMD, placez-vous dans votre dossier
 -Créez un environnement avec la commande : python -m venv env
