@@ -3,6 +3,7 @@ from models.menu_model import MenuModel
 from views.menu_view import MenuView
 from .round_global_controller import RoundGlobalController
 
+
 class RoundMenuController:
     """
     Same principle as the HomeMenuController class:
@@ -24,17 +25,22 @@ class RoundMenuController:
             # If the tournament is done we don't display
             if tournament.get_status_tournament():
 
-                # get objet on the tournament model and get information with round model
+                # get objet on the tournament model,
+                # and get information with round model
                 for round_in_tournament in tournament.get_round_list():
 
                     if round_in_tournament.get_status_round():
                         # print(round_in_tournament)
-                        self.round_menu.add("auto", 'Faire le ' + round_in_tournament.get_name_round() + ' du tournoi: '
-                                            + tournament.get_name_tournament() + '?',
-                                            RoundGlobalController(round_in_tournament))
+                        self.round_menu.add(
+                            "auto", 'Faire le '
+                            + round_in_tournament.get_name_round() +
+                            ' du tournoi: '
+                            + tournament.get_name_tournament() +
+                            '?',
+                            RoundGlobalController(round_in_tournament))
+
                         # break -> we display only one
                         break
 
         users_choice = self.round_view.get_user_choice
         return users_choice
-

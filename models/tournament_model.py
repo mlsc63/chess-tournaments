@@ -1,9 +1,8 @@
-
-
 class TournamentsModel:
 
-    def __init__(self, name='', location='', date='', number_of_turns = 4, time_controller='', number_of_players='',
-                 description='', status=True, score=[], meet=[]):
+    def __init__(self, name='', location='', date='', number_of_turns=4,
+                 time_controller='', number_of_players='', description='',
+                 status=True, score=[], meet=[]):
         self.name = name
         self.location = location
         self.date = date
@@ -94,8 +93,9 @@ class TournamentsModel:
                          self.description)
 
     def tournament_table(self):
-        return [self.name, self.location, self.date, self.number_of_turns, self.time_controller,
-                self.number_of_players, self.description, self.status]
+        return [self.name, self.location, self.date, self.number_of_turns,
+                self.time_controller, self.number_of_players, self.description,
+                self.status]
 
     def set_score(self, id_player, score):
         self.score[id_player] += score

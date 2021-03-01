@@ -12,5 +12,3 @@ class ApplicationController:
         self.controller = HomeMenuController()
         while self.controller:
             self.controller = self.controller()
-
-

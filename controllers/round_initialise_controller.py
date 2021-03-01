@@ -1,7 +1,7 @@
 class RoundInitialiseController:
-    '''
+    """
     Initializes matches in the round class. Mainly used to save it with TinyDB
-    '''
+    """
     def __init__(self, number_match, round_model):
         self.number_match = number_match
         self.round_model = round_model
@@ -15,22 +15,3 @@ class RoundInitialiseController:
             list_match.append(match_tuple)
             index += 1
         self.round_model.add_match_list(list_match)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

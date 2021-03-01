@@ -4,7 +4,6 @@ class MenuView:
         self.menu = menu
 
     def display(self):
-
         for key, entry in self.menu.entries.items():
             print(f"{key}:{entry.option}")
 

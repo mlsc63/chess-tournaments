@@ -23,17 +23,29 @@ class CreateTournaments:
 
     def __call__(self):
         print("___Creation d'un nouveau tournoi___")
-        self.tournament_model.add_name_tournament(self.validation.name("Name:"))
-        self.tournament_model.add_date_tournament(self.validation.date('Date:\n'))
-        self.tournament_model.add_location_tournament(self.validation.tournament_location('Lieu:\n'))
-        self.tournament_model.add_number_of_turns_tournament(self.validation.tournament_number_of_turns('Nombre de tours:\n'))
-        self.tournament_model.add_time_controller_tournament(self.validation.tournaments_time_controller('Contrôle du temps:\n'))
-        self.tournament_model.add_number_of_players_tournament(self.validation.number_of_players('Nombre de participants (Nombre pair):\n'))
-        self.tournament_model.add_description_tournament(self.validation.tournaments_descriptions('Description (option)'))
-        self.tournament_model.add_score([0] * self.tournament_model.get_number_of_players())
-
-
-
+        self.tournament_model.add_name_tournament(
+            self.validation.name(
+                "Name:"))
+        self.tournament_model.add_date_tournament(
+            self.validation.date(
+                'Date:\n'))
+        self.tournament_model.add_location_tournament(
+            self.validation.tournament_location(
+                'Lieu:\n'))
+        self.tournament_model.add_number_of_turns_tournament(
+            self.validation.tournament_number_of_turns(
+                'Nombre de tours:\n'))
+        self.tournament_model.add_time_controller_tournament(
+            self.validation.tournaments_time_controller(
+                'Contrôle du temps:\n'))
+        self.tournament_model.add_number_of_players_tournament(
+            self.validation.number_of_players(
+                'Nombre de participants (Nombre pair):\n'))
+        self.tournament_model.add_description_tournament(
+            self.validation.tournaments_descriptions(
+                'Description (option)'))
+        self.tournament_model.add_score(
+            [0] * self.tournament_model.get_number_of_players())
 
         # save tournament in list
         ListObjet.TOURNAMENT.append(self.tournament_model)
@@ -44,11 +56,16 @@ class CreateTournaments:
         print("___Ajout des joueurs___")
         while id_players != int(self.tournament_model.number_of_players):
             self.player_model = PlayerModel()
-            self.player_model.add_first_name_player(self.validation.name('Prenom:'))
-            self.player_model.add_name_player(self.validation.name('Nom:'))
-            self.player_model.add_date_of_bird_player(self.validation.name(('Date de naissance')))
-            self.player_model.add_sex_player(self.validation.sex('Sexe:'))
-            self.player_model.add_ranked_player(self.validation.player_level('Niveau du joueur:'))
+            self.player_model.add_first_name_player(
+                self.validation.name('Prenom:'))
+            self.player_model.add_name_player(
+                self.validation.name('Nom:'))
+            self.player_model.add_date_of_bird_player(
+                self.validation.name(('Date de naissance')))
+            self.player_model.add_sex_player(
+                self.validation.sex('Sexe:'))
+            self.player_model.add_ranked_player(
+                self.validation.player_level('Niveau du joueur:'))
             self.player_model.add_id_player(id_players)
 
             # save instantiation in model of tournament
@@ -69,8 +86,10 @@ class CreateTournaments:
             print(self.round_model)
 
             # Round initialisation
-            numbers_of_match = (len(self.tournament_model.get_players_instantiation_list()) // 2)
-            round_initialisation_controller = RoundInitialiseController(numbers_of_match, self.round_model)
+            numbers_of_match = (len(
+                self.tournament_model.get_players_instantiation_list()) // 2)
+            round_initialisation_controller = RoundInitialiseController(
+                numbers_of_match, self.round_model)
             round_initialisation_controller()
             rounds += 1
 
