@@ -9,7 +9,7 @@ from controllers.information_board_controller import \
     ListOfAllPlayersInATournament, ListOfAllPlayers,\
     ListOfAllTournaments, ListOfAllRoundsInATournament, \
     ListOfAllMatchesInATournament
-
+from controllers.display_score import TournamentsScore
 
 class HomeMenuController:
     """
@@ -34,9 +34,11 @@ class HomeMenuController:
 
         if len(ListObjet.TOURNAMENT) > 0:
             self.menu.add("auto", "Tournoi en cour", RoundMenuController())
+            self.menu.add("auto", "Score des tournois", TournamentsScore())
+
 
         self.menu.add(
-            "auto", "Créer un tournois", CreateTournaments())
+            "auto", "Créer un tournoi", CreateTournaments())
         self.menu.add(
             "auto", "Liste de tous les acteurs d'un tournoi",
             ListOfAllPlayersInATournament())
@@ -56,7 +58,7 @@ class HomeMenuController:
             "s", "Sauvegarder",
             DataControllerSave())
         self.menu.add(
-            'e', 'Effacer la base de donnée',
+            'e', 'Effacer la base de données',
             DataControllerErase())
         self.menu.add(
             "q", "Quitter)",

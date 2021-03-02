@@ -13,6 +13,9 @@ class PlayerModel:
     def get_name_p(self):
         return self.name
 
+    def get_first_name_p(self):
+        return self.fist_name
+
     def add_first_name_player(self, first_name):
         self.fist_name = first_name
 

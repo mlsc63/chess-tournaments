@@ -269,8 +269,13 @@ class RoundGlobalController:
 
             # We check if it's the last round to pass the tournament,
             # in completed
+            print('statud')
+            print(type(self.round.get_tournament_round().get_tournament_turns()))
+            print(type(self.round.get_name_round()[-1]))
             if self.round.get_tournament_round().get_tournament_turns()\
-                    == self.round.get_name_round()[-1]:
+                    == int(self.round.get_name_round()[-1]):
                 self.round.get_tournament_round().set_status_tournament_false()
+
+
 
             return home_menu_controller.HomeMenuController()

@@ -2,6 +2,7 @@ from list import ListObjet
 from models.menu_model import MenuModel
 from views.menu_view import MenuView
 from .round_global_controller import RoundGlobalController
+from . import home_menu_controller
 
 
 class RoundMenuController:
@@ -39,8 +40,10 @@ class RoundMenuController:
                             '?',
                             RoundGlobalController(round_in_tournament))
 
+
                         # break -> we display only one
                         break
+            self.round_menu.add("r", 'Retour', home_menu_controller.HomeMenuController())
 
         users_choice = self.round_view.get_user_choice
         return users_choice

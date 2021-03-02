@@ -5,7 +5,6 @@ from . import home_menu_controller
 from views.data_table_view import DataTableView
 
 
-# TODO Make better data management
 
 class Init:
 
@@ -152,7 +151,7 @@ class ListOfAllMatchesInATournamentV2:
         self.tournament = tournament
 
     def __call__(self, *args, **kwargs):
-        print('___Selectionner un tournois pour avoir la liste des tours___')
+        print('___Selectionner un tournoi pour avoir la liste des tours___')
         for round in self.tournament.get_round_list():
             if not round.get_status_round():
                 self.tournament_menu.add(
