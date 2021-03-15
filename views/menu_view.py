@@ -9,5 +9,10 @@ class MenuView:
 
     def get_user_choice(self):
         self.display()
-        value = input(">>")
-        return self.menu.entries[value].handler
+        while True:
+            value = input(">>")
+            for key in self.menu.entries.items():
+                if key[0] == value:
+                    return self.menu.entries[value].handler
+            print("Non valide")
+1
