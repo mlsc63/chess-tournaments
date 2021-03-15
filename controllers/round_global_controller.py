@@ -1,6 +1,7 @@
 from views.matches_view import MatchesDisplay
 from . import home_menu_controller
-
+from .update_ranked import UpdateRanked
+from views.data_table_view import DataTableView
 
 class MakeList:
     """
@@ -28,13 +29,11 @@ class MakeList:
         self.tournament = self.round.get_tournament_round()
         return_player_one_list = []
         return_player_two_list = []
-        print(str(self.player_list) + str(len(self.player_list)))
 
         index = 0
         while self.player_list != []:
             for player_id in self.player_list:
                 # We record player one in the return list
-                print('the first player')
                 return_player_one_list.append(player_list[0])
                 # We want to know if this opponent has already
                 # told our player 1
@@ -104,12 +103,31 @@ class MakeList:
                     .append(self.player_list[position_adversaries])
                 del self.player_list[0]
                 del self.player_list[position_adversaries - 1]
-                print(str(self.player_list))
-                print('Liste joueur 1' + str(return_player_one_list))
-                print('liste joueur 2' + str(return_player_two_list))
                 index += 1
 
         return return_player_one_list, return_player_two_list
+
+
+class Init:
+    def __init__(self, tournament):
+        self.tournament = tournament
+
+    def __call__(self, *args, **kwargs):
+        columns = ['Prenom', 'Nom', 'score']
+        table_players = []
+        index = []
+        number_of_players = 1
+        index_player = 0
+
+        for score in self.tournament.get_score():
+            player = self.tournament.get_players_instantiation_list()[index_player]
+
+            table_players.append([player.get_first_name_p(), player.get_name_p(), score])
+            index.append(number_of_players)
+            number_of_players += 1
+            index_player += 1
+
+        DataTableView(table_players, index, columns).display()
 
 
 class SetScore:
@@ -202,8 +220,6 @@ class RoundGlobalController:
                 self.round.get_tournament_round().set_meet_tournament(
                     [self.player_one[index].get_id_player(),
                      self.player_two[index].get_id_player()])
-                print(str(
-                    self.round.get_tournament_round().get_meet_tournament()))
 
                 index += 1
 
@@ -218,7 +234,7 @@ class RoundGlobalController:
             character_to_convert = self.round.get_name_round()[-1]
             converted_character = int(character_to_convert)
 
-            if self.round.get_tournament_round()\
+            if self.round.get_tournament_round() \
                     .get_tournament_turns() == converted_character:
                 self.round.get_tournament_round().set_status_tournament_false()
             return home_menu_controller.HomeMenuController()
@@ -234,7 +250,7 @@ class RoundGlobalController:
                 score_list, self.round)
             index = 0
             matches_list = []
-            print(str(self.player_one) + str(self.player_two))
+
             for match in self.round.get_match_list():
                 matches_display = MatchesDisplay()
                 score_player_one, score_player_two = matches_display(
@@ -257,8 +273,7 @@ class RoundGlobalController:
                 # in the other matches
                 self.round.get_tournament_round().set_meet_tournament(
                     [self.player_one[index], self.player_two[index]])
-                print(str(self.round.get_tournament_round().
-                          get_meet_tournament()))
+
                 index += 1
 
             # On save
@@ -269,13 +284,12 @@ class RoundGlobalController:
 
             # We check if it's the last round to pass the tournament,
             # in completed
-            print('statud')
-            print(type(self.round.get_tournament_round().get_tournament_turns()))
-            print(type(self.round.get_name_round()[-1]))
-            if self.round.get_tournament_round().get_tournament_turns()\
+            if self.round.get_tournament_round().get_tournament_turns() \
                     == int(self.round.get_name_round()[-1]):
                 self.round.get_tournament_round().set_status_tournament_false()
-
-
+                init = Init(self.round.get_tournament_round())
+                init()
+                update_ranked = UpdateRanked(self.round.get_tournament_round())
+                update_ranked()
 
             return home_menu_controller.HomeMenuController()

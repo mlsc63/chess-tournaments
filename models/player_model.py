@@ -54,3 +54,6 @@ class PlayerModel:
         return 'Ranked: {0} Prenom: {1} Nom: {2} '.format(self.ranked,
                                                           self.fist_name,
                                                           self.name)
+
+    def set_ranked(self, new_ranked):
+        self.ranked = new_ranked
