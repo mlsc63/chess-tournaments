@@ -29,7 +29,7 @@ class MakeList:
         self.tournament = self.round.get_tournament_round()
         return_player_one_list = []
         return_player_two_list = []
-
+        self.round.add_start_time_round()
         index = 0
         while self.player_list != []:
             for player_id in self.player_list:
@@ -104,7 +104,7 @@ class MakeList:
                 del self.player_list[0]
                 del self.player_list[position_adversaries - 1]
                 index += 1
-
+        self.round.add_end_time_round()
         return return_player_one_list, return_player_two_list
 
 
@@ -178,6 +178,7 @@ class RoundGlobalController:
     def __call__(self, *args, **kwargs):
 
         if self.round.get_name_round() == 'Round 1':
+            self.round.add_start_time_round()
             print(self.round.get_name_round())
 
             # Made in order players ranked increasing
@@ -237,6 +238,7 @@ class RoundGlobalController:
             if self.round.get_tournament_round() \
                     .get_tournament_turns() == converted_character:
                 self.round.get_tournament_round().set_status_tournament_false()
+            self.round.add_end_time_round()
             return home_menu_controller.HomeMenuController()
 
         if self.round.get_name_round() != 'Round 1':
