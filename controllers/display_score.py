@@ -39,5 +39,5 @@ class TournamentsScore:
                 self.tournament_menu.add("auto", tournament.get_name_tournament(), Init(tournament))
             self.tournament_menu.add("r", 'Retour', home_menu_controller.HomeMenuController())
 
-            user_choice = self.tournament_view.get_user_choice
-            return user_choice
+        user_choice = self.tournament_view.get_user_choice
+        return user_choice
