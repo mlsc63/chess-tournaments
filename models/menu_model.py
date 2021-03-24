@@ -15,5 +15,4 @@ class MenuModel:
         if key == "auto":
             key = str(self.autokey)
             self.autokey += 1
-
         self.entries[str(key)] = MenuEntry(key, option, handler)

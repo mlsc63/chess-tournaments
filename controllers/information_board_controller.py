@@ -5,7 +5,6 @@ from . import home_menu_controller
 from views.data_table_view import DataTableView
 
 
-
 class Init:
 
     def __init__(self, objet, value, tournament=''):

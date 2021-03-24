@@ -34,16 +34,17 @@ class RoundMenuController:
                         # print(round_in_tournament)
                         self.round_menu.add(
                             "auto", 'Faire le '
-                            + round_in_tournament.get_name_round() +
-                            ' du tournoi: '
-                            + tournament.get_name_tournament() +
-                            '?',
+                                    + round_in_tournament.get_name_round() +
+                                    ' du tournoi: '
+                                    + tournament.get_name_tournament() +
+                                    '?',
                             RoundGlobalController(round_in_tournament))
-
 
                         # break -> we display only one
                         break
-            self.round_menu.add("r", 'Retour', home_menu_controller.HomeMenuController())
+            self.round_menu.add("r",
+                                'Retour',
+                                home_menu_controller.HomeMenuController())
 
         users_choice = self.round_view.get_user_choice
         return users_choice

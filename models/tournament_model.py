@@ -115,4 +115,3 @@ class TournamentsModel:
     def set_status_tournament_false(self):
         self.status = False
         print('Status false')
-

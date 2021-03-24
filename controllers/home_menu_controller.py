@@ -11,6 +11,7 @@ from controllers.information_board_controller import \
     ListOfAllMatchesInATournament
 from controllers.display_score import TournamentsScore
 
+
 class HomeMenuController:
     """
     Works with menu_model and menu view for the menu display,
@@ -35,7 +36,6 @@ class HomeMenuController:
         if len(ListObjet.TOURNAMENT) > 0:
             self.menu.add("auto", "Tournoi en cour", RoundMenuController())
             self.menu.add("auto", "Score des tournois", TournamentsScore())
-
 
         self.menu.add(
             "auto", "Créer un tournoi", CreateTournaments())

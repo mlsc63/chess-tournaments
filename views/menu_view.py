@@ -15,4 +15,3 @@ class MenuView:
                 if key[0] == value:
                     return self.menu.entries[value].handler
             print("Non valide")
-1

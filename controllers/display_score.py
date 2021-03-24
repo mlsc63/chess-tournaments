@@ -17,9 +17,12 @@ class Init:
         index_player = 0
 
         for score in self.tournament.get_score():
-            player = self.tournament.get_players_instantiation_list()[index_player]
+            player = self.tournament.get_players_instantiation_list(
 
-            table_players.append([player.get_first_name_p(), player.get_name_p(), score])
+            )[index_player]
+
+            table_players.append(
+                [player.get_first_name_p(), player.get_name_p(), score])
             index.append(number_of_players)
             number_of_players += 1
             index_player += 1
@@ -36,8 +39,12 @@ class TournamentsScore:
     def __call__(self, *args, **kwargs):
         for tournament in ListObjet.TOURNAMENT:
             if not tournament.get_status_tournament():
-                self.tournament_menu.add("auto", tournament.get_name_tournament(), Init(tournament))
-            self.tournament_menu.add("r", 'Retour', home_menu_controller.HomeMenuController())
+                self.tournament_menu.add("auto",
+                                         tournament.get_name_tournament(),
+                                         Init(tournament))
+            self.tournament_menu.add("r",
+                                     'Retour',
+                                     home_menu_controller.HomeMenuController())
 
         user_choice = self.tournament_view.get_user_choice
         return user_choice

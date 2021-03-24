@@ -3,6 +3,7 @@ from . import home_menu_controller
 from .update_ranked import UpdateRanked
 from views.data_table_view import DataTableView
 
+
 class MakeList:
     """
     For rounds greater than one:
@@ -120,9 +121,11 @@ class Init:
         index_player = 0
 
         for score in self.tournament.get_score():
-            player = self.tournament.get_players_instantiation_list()[index_player]
+            player = self.tournament.get_players_instantiation_list(
 
-            table_players.append([player.get_first_name_p(), player.get_name_p(), score])
+            )[index_player]
+            table_players.append(
+                [player.get_first_name_p(), player.get_name_p(), score])
             index.append(number_of_players)
             number_of_players += 1
             index_player += 1
